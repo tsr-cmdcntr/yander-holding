@@ -14,6 +14,15 @@ const ALLOWED_ORIGINS = new Set([
   "https://www.yander.app",
 ]);
 
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function isEmail(value) {
   if (typeof value !== "string") return false;
   if (value.length > 254) return false;
@@ -80,6 +89,15 @@ async function handleSubscribe(request, env) {
   })();
 
   const subject = `New Yander signup — ${email}`;
+  const html =
+    `<p>A new email signup landed on the Yander holding page.</p>` +
+    `<table cellpadding="6" cellspacing="0" border="0" style="font-family:system-ui,sans-serif;font-size:14px">` +
+    `<tr><td><strong>Email</strong></td><td>${escapeHtml(email)}</td></tr>` +
+    `<tr><td><strong>When</strong></td><td>${escapeHtml(when)}</td></tr>` +
+    `<tr><td><strong>Country</strong></td><td>${escapeHtml(ipCountry)}</td></tr>` +
+    `<tr><td><strong>Source</strong></td><td>${escapeHtml(source || refererHost || "(direct)")}</td></tr>` +
+    `<tr><td><strong>User-Agent</strong></td><td>${escapeHtml(userAgent)}</td></tr>` +
+    `</table>`;
   const text =
     `A new email signup landed on the Yander holding page.\n\n` +
     `Email:     ${email}\n` +
@@ -88,25 +106,37 @@ async function handleSubscribe(request, env) {
     `Source:    ${source || refererHost || "(direct)"}\n` +
     `User-Agent: ${userAgent}\n`;
 
-  // MailChannels is free from Cloudflare Workers.
-  // Docs: https://api.mailchannels.net/tx/v1/documentation
-  const mcResp = await fetch("https://api.mailchannels.net/tx/v1/send", {
+  // Resend transactional email API.
+  // Docs: https://resend.com/docs/api-reference/emails/send-email
+  // Requires RESEND_API_KEY secret (set via `wrangler secret put` or dashboard).
+  if (!env.RESEND_API_KEY) {
+    console.error("RESEND_API_KEY is not set. Signup captured but not delivered:", email);
+    return new Response(
+      JSON.stringify({ ok: true, queued: true }),
+      { status: 200, headers: { ...cors, "Content-Type": "application/json" } }
+    );
+  }
+
+  const resp = await fetch("https://api.resend.com/emails", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${env.RESEND_API_KEY}`,
+    },
     body: JSON.stringify({
-      personalizations: [{ to: [{ email: NOTIFY_TO, name: "Yander" }] }],
-      from: { email: NOTIFY_FROM, name: NOTIFY_FROM_NAME },
-      reply_to: { email: email },
+      from: `${NOTIFY_FROM_NAME} <${NOTIFY_FROM}>`,
+      to: [NOTIFY_TO],
+      reply_to: email,
       subject: subject,
-      content: [{ type: "text/plain", value: text }],
+      text: text,
+      html: html,
     }),
   });
 
-  if (!mcResp.ok) {
-    const detail = await mcResp.text().catch(() => "");
-    console.error("MailChannels send failed", mcResp.status, detail);
-    // We still tell the user they're on the list — the email + timestamp is in our logs.
-    // (If this becomes a problem we can wire KV/D1 storage later.)
+  if (!resp.ok) {
+    const detail = await resp.text().catch(() => "");
+    console.error("Resend send failed", resp.status, detail);
+    // Still tell the user they're on the list — we have the signup in logs.
     return new Response(
       JSON.stringify({ ok: true, queued: true }),
       { status: 200, headers: { ...cors, "Content-Type": "application/json" } }
