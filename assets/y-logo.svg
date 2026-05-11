@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" role="img" aria-label="Yander" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+  <title>Yander</title>
+  <desc>An organic Y where the stem winds like a road and ends in a destination pin.</desc>
+  <path d="M 32 22 C 52 56, 78 96, 100 118" stroke-width="22"/>
+  <path d="M 168 18 C 146 54, 120 92, 100 118" stroke-width="22"/>
+  <path d="M 100 118 C 116 148, 126 168, 112 188 C 96 212, 72 218, 64 230" stroke-width="22"/>
+  <circle cx="62" cy="240" r="14" fill="currentColor" stroke="none"/>
+</svg>

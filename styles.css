@@ -105,8 +105,9 @@ svg {
   animation: fadeUp 0.9s 0.05s both cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .emblem {
-  width: 56px;
-  height: 56px;
+  /* Y mark has roughly 5:6 aspect (200x260 viewBox). */
+  height: 64px;
+  width: auto;
   display: block;
 }
 .brand__text {
