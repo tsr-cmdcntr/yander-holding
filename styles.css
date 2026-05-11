@@ -1,0 +1,394 @@
+/* ------- Yander brand tokens (matched to the marketing deck cover) ------- */
+:root {
+  /* Forest primary, like the app's CTA + brand green */
+  --forest: #1a7a4a;
+  --forest-deep: #0f5a36;
+  --forest-darker: #0a3d24;
+  --forest-darkest: #062418;
+  --forest-bright: #22a86a;
+  /* Warm amber accent */
+  --amber: #d97a3c;
+  --amber-warm: #e8954f;
+  /* Cream paper */
+  --paper: #f7f3ec;
+  --paper-soft: rgba(247, 243, 236, 0.78);
+  --paper-faint: rgba(247, 243, 236, 0.16);
+  /* Inks (used on cream cards if needed) */
+  --ink: #2b231d;
+  --ink-soft: #6a5d50;
+  /* Rules over the dark bg */
+  --rule: rgba(247, 243, 236, 0.14);
+  --rule-strong: rgba(247, 243, 236, 0.26);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.18),
+    0 18px 40px -16px rgba(0, 0, 0, 0.45);
+
+  --font-display: "Fraunces", "Iowan Old Style", "Apple Garamond", Georgia, serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ------- Reset & base ------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+body {
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--paper);
+  background:
+    radial-gradient(70rem 45rem at 85% -10%, rgba(217, 122, 60, 0.10), transparent 60%),
+    radial-gradient(60rem 40rem at -10% 110%, rgba(34, 168, 106, 0.10), transparent 60%),
+    linear-gradient(180deg, var(--forest-darker) 0%, var(--forest-darkest) 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ------- Background horizon lines (echoes deck cover) ------- */
+.topo {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+}
+
+/* ------- Layout ------- */
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 56px) clamp(20px, 5vw, 56px);
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: clamp(40px, 7vw, 72px);
+}
+
+/* ------- Brand mark (mirrors deck cover top-left) ------- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  animation: fadeUp 0.9s 0.05s both cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.emblem {
+  width: 56px;
+  height: 56px;
+  display: block;
+}
+.brand__text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  line-height: 1;
+}
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.85rem;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+}
+.brand__sub {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+/* ------- Hero ------- */
+.hero {
+  align-self: center;
+  max-width: 880px;
+  animation: fadeUp 1s 0.15s both cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 26px;
+  padding: 6px 12px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: rgba(247, 243, 236, 0.06);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+}
+.eyebrow .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 0 0 rgba(217, 122, 60, 0.5);
+  animation: pulse 2.4s infinite ease-out;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(3rem, 9vw, 6.4rem);
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  color: var(--paper);
+  margin: 0 0 26px;
+}
+.headline em {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--amber);
+}
+
+.lede {
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  line-height: 1.55;
+  color: var(--paper-soft);
+  margin: 0 0 32px;
+  max-width: 56ch;
+}
+
+/* ------- Mode chips ------- */
+.modes {
+  list-style: none;
+  margin: 0 0 36px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.modes li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  font-size: 0.875rem;
+  color: var(--paper);
+  background: rgba(247, 243, 236, 0.06);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+}
+.modes svg {
+  width: 16px;
+  height: 16px;
+  color: var(--amber);
+}
+
+/* ------- Signup ------- */
+.signup {
+  margin: 0;
+  max-width: 560px;
+}
+.signup__label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--paper);
+  margin-bottom: 10px;
+}
+.signup__row {
+  display: flex;
+  gap: 8px;
+  background: rgba(247, 243, 236, 0.07);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  padding: 6px;
+  box-shadow: var(--shadow-soft);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  backdrop-filter: blur(6px);
+}
+.signup__row:focus-within {
+  border-color: var(--amber);
+  background: rgba(247, 243, 236, 0.10);
+  box-shadow: 0 0 0 4px rgba(217, 122, 60, 0.18), var(--shadow-soft);
+}
+.signup__row input {
+  flex: 1;
+  min-width: 0;
+  appearance: none;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  padding: 12px 14px;
+  font: inherit;
+  color: var(--paper);
+}
+.signup__row input::placeholder {
+  color: rgba(247, 243, 236, 0.46);
+}
+.signup__row button {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  font: inherit;
+  font-weight: 500;
+  color: #fff;
+  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-bright) 100%);
+  border-radius: 10px;
+  transition: filter 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+  box-shadow: 0 1px 0 rgba(15, 90, 54, 0.4), 0 6px 16px -8px rgba(15, 90, 54, 0.55);
+}
+.signup__row button:hover {
+  filter: brightness(1.08);
+}
+.signup__row button:active {
+  transform: translateY(1px);
+}
+.signup__row button svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+.signup__row button:hover svg {
+  transform: translateX(2px);
+}
+.signup__hint {
+  margin: 10px 2px 0;
+  font-size: 0.8rem;
+  color: var(--paper-soft);
+}
+
+/* ------- Footer (mirrors deck cover footer bar) ------- */
+.foot {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 24px;
+  font-size: 0.85rem;
+  color: var(--paper-soft);
+  border-top: 1px solid var(--rule);
+  padding-top: 24px;
+  animation: fadeUp 1s 0.3s both cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.foot__left {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+.foot__right {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--paper-soft);
+  text-align: right;
+}
+.social {
+  display: flex;
+  gap: 6px;
+}
+.social a {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--paper);
+  border-radius: 10px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.social a:hover {
+  background: rgba(247, 243, 236, 0.10);
+  color: var(--amber);
+}
+.social svg {
+  width: 18px;
+  height: 18px;
+}
+.legal a {
+  color: var(--amber);
+  border-bottom: 1px solid rgba(217, 122, 60, 0.32);
+}
+.legal a:hover {
+  border-bottom-color: var(--amber);
+}
+
+/* ------- Motion ------- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(217, 122, 60, 0.45);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(217, 122, 60, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(217, 122, 60, 0);
+  }
+}
+
+@media (max-width: 640px) {
+  .signup__row {
+    flex-direction: column;
+    padding: 8px;
+  }
+  .signup__row button {
+    width: 100%;
+    justify-content: center;
+  }
+  .foot {
+    grid-template-columns: 1fr;
+  }
+  .foot__right {
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

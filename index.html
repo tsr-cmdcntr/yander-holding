@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Yander — The road less driven.</title>
+    <meta name="description" content="A scenic route planner for drivers, cyclists, and walkers — beyond the motorway, beyond the honeypots, yander to somewhere worth heading to. Launching soon." />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Yander — The road less driven." />
+    <meta property="og:description" content="A scenic route planner for drivers, cyclists, and walkers — beyond the motorway, beyond the honeypots, yander to somewhere worth heading to." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yander.app" />
+    <meta property="og:image" content="https://yander.app/assets/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" type="image/png" href="assets/yander-emblem.png" />
+    <link rel="apple-touch-icon" href="assets/yander-emblem.png" />
+
+    <!-- Fonts: Fraunces for warmth in the wordmark/hero, Inter for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Horizon grid backdrop (mirrors deck cover) -->
+    <svg class="topo" aria-hidden="true" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="horizon-fade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f7f3ec" stop-opacity="0" />
+          <stop offset="55%" stop-color="#f7f3ec" stop-opacity="0.10" />
+          <stop offset="100%" stop-color="#f7f3ec" stop-opacity="0" />
+        </linearGradient>
+        <mask id="horizon-mask">
+          <rect x="0" y="0" width="1600" height="900" fill="url(#horizon-fade)" />
+        </mask>
+      </defs>
+      <!-- Perspective grid: convergent verticals -->
+      <g stroke="#f7f3ec" stroke-opacity="0.18" stroke-width="0.6" fill="none" mask="url(#horizon-mask)">
+        <line x1="-400" y1="900" x2="760" y2="540" />
+        <line x1="-100" y1="900" x2="780" y2="540" />
+        <line x1="200" y1="900" x2="795" y2="540" />
+        <line x1="500" y1="900" x2="805" y2="540" />
+        <line x1="800" y1="900" x2="815" y2="540" />
+        <line x1="1100" y1="900" x2="825" y2="540" />
+        <line x1="1400" y1="900" x2="835" y2="540" />
+        <line x1="1700" y1="900" x2="845" y2="540" />
+        <line x1="2000" y1="900" x2="855" y2="540" />
+      </g>
+      <!-- Horizon ridges (very subtle, echoes scenic landscape) -->
+      <g fill="none" stroke="#f7f3ec" stroke-opacity="0.10" stroke-width="1">
+        <path d="M0,560 C300,540 520,548 760,540 C1020,530 1280,545 1600,540" />
+        <path d="M0,610 C260,592 480,600 760,592 C1040,584 1280,594 1600,588" />
+        <path d="M0,660 C240,640 460,648 740,640 C1040,632 1280,642 1600,636" />
+      </g>
+    </svg>
+
+    <main class="page">
+      <header class="brand">
+        <img class="emblem" src="assets/yander-emblem.png" alt="Yander logo — a teardrop pin with a mountain, sun, and winding road" width="120" height="120" />
+        <div class="brand__text">
+          <div class="wordmark">yander</div>
+          <div class="brand__sub">Coming 2026</div>
+        </div>
+      </header>
+
+      <section class="hero">
+        <p class="eyebrow"><span class="dot"></span> Launching soon</p>
+        <h1 class="headline">The road<br />less <em>driven.</em></h1>
+        <p class="lede">
+          A scenic route planner for drivers, cyclists, and walkers — beyond the motorway,
+          beyond the honeypots, yander to somewhere worth heading to.
+        </p>
+
+        <ul class="modes" aria-label="Travel modes">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13l2-5a2 2 0 0 1 1.9-1.4h10.2A2 2 0 0 1 19 8l2 5"/><path d="M5 18h14"/><path d="M5 13v5"/><path d="M19 13v5"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg>
+            Drive
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="17" r="3.5"/><circle cx="18" cy="17" r="3.5"/><path d="M6 17l4-9h5"/><path d="M10 8l4 9"/><path d="M13 5h3"/></svg>
+            Cycle
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="4.5" r="1.6"/><path d="M9 22l2.5-6 2-2.5-2-3.5L8 13"/><path d="M13.5 13.5l3 2 1.5 4"/><path d="M7 11l2-3 4 .5"/></svg>
+            Walk
+          </li>
+        </ul>
+
+        <form class="signup" action="mailto:hello@yander.app" method="post" enctype="text/plain">
+          <label class="signup__label" for="email">
+            Be first to know when we launch
+          </label>
+          <div class="signup__row">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              placeholder="you@somewhere.co.uk"
+              aria-label="Email address"
+            />
+            <button type="submit">
+              <span>Keep me posted</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+          <p class="signup__hint">No spam. The occasional postcard from the road.</p>
+        </form>
+      </section>
+
+      <footer class="foot">
+        <div class="foot__left">
+        <nav class="social" aria-label="Yander on social">
+          <a href="https://instagram.com/yander" rel="me noopener" target="_blank" aria-label="Yander on Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
+          </a>
+          <a href="https://x.com/yander" rel="me noopener" target="_blank" aria-label="Yander on X">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 3h4.2l4.6 6.4L16.8 3H21l-7 9.1L21.6 21H17.4l-5-6.9L6.6 21H2.3l7.5-9.5z"/></svg>
+          </a>
+          <a href="https://threads.net/@yander" rel="me noopener" target="_blank" aria-label="Yander on Threads">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c5 0 8 3.2 8 8.5S17.2 21 12 21c-3.6 0-6.4-1.7-7.5-4.7"/><path d="M9 12c0-2 1.4-3.4 3.5-3.4 2.3 0 3.5 1.5 3.5 3.6 0 2.6-2 4.2-4.6 4.2-1.5 0-2.6-.6-3-1.7"/></svg>
+          </a>
+          <a href="https://tiktok.com/@yander" rel="me noopener" target="_blank" aria-label="Yander on TikTok">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 4c.4 2.6 2.4 4.4 5 4.6"/></svg>
+          </a>
+        </nav>
+        <p class="legal">
+          © 2026 Yander · <a href="mailto:hello@yander.app">hello@yander.app</a> · Made in the UK
+        </p>
+        </div>
+        <p class="foot__right">Take the long way home.</p>
+      </footer>
+    </main>
+  </body>
+</html>
