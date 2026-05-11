@@ -40,8 +40,11 @@
 
     <link rel="stylesheet" href="styles.css" />
 
-    <!-- Cloudflare Web Analytics — token swapped in when site is added in CF dashboard -->
-    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "__CF_ANALYTICS_TOKEN__"}'></script>
+    <!--
+      Cloudflare Web Analytics is configured via Automatic Setup at the zone level
+      (dashboard → Analytics & Logs → Web Analytics). No beacon script is needed in
+      the page — Cloudflare injects it at the edge.
+    -->
   </head>
   <body>
     <!-- Horizon grid backdrop (mirrors deck cover) -->
