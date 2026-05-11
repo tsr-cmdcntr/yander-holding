@@ -287,6 +287,25 @@ svg {
   margin: 10px 2px 0;
   font-size: 0.8rem;
   color: var(--paper-soft);
+  transition: color 180ms ease;
+}
+.signup__hint--err {
+  color: #f4a98a;
+}
+.signup__row button:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+.signup--sent .signup__row input {
+  opacity: 0.55;
+  pointer-events: none;
+}
+.signup--sent .signup__row button {
+  background: var(--forest-deep);
+  color: var(--paper);
+}
+.signup--sent .signup__hint {
+  color: var(--amber-warm);
 }
 
 /* ------- Footer (mirrors deck cover footer bar) ------- */

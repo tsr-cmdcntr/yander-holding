@@ -1,0 +1,9 @@
+# Files in repo that should NOT be served as public static assets.
+src/
+wrangler.jsonc
+.gitignore
+README.md
+.assetsignore
+package.json
+package-lock.json
+node_modules/

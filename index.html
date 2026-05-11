@@ -6,16 +6,29 @@
     <title>Yander — The road less driven.</title>
     <meta name="description" content="A scenic route planner for drivers, cyclists, and walkers — beyond the motorway, beyond the honeypots, yander to somewhere worth heading to. Launching soon." />
 
+    <link rel="canonical" href="https://yander.app/" />
+
     <!-- Open Graph -->
     <meta property="og:title" content="Yander — The road less driven." />
     <meta property="og:description" content="A scenic route planner for drivers, cyclists, and walkers — beyond the motorway, beyond the honeypots, yander to somewhere worth heading to." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://yander.app" />
+    <meta property="og:url" content="https://yander.app/" />
     <meta property="og:image" content="https://yander.app/assets/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Yander — coming 2026. The road less driven." />
+    <meta property="og:site_name" content="Yander" />
+    <meta property="og:locale" content="en_GB" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Yander — The road less driven." />
+    <meta name="twitter:description" content="A scenic route planner for drivers, cyclists, and walkers — coming 2026." />
+    <meta name="twitter:image" content="https://yander.app/assets/og.png" />
+    <meta name="theme-color" content="#0a3d24" />
 
-    <link rel="icon" type="image/png" href="assets/yander-emblem.png" />
-    <link rel="apple-touch-icon" href="assets/yander-emblem.png" />
+    <link rel="icon" href="/assets/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
 
     <!-- Fonts: Fraunces for warmth in the wordmark/hero, Inter for body -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,6 +39,9 @@
     />
 
     <link rel="stylesheet" href="styles.css" />
+
+    <!-- Cloudflare Web Analytics — token swapped in when site is added in CF dashboard -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "__CF_ANALYTICS_TOKEN__"}'></script>
   </head>
   <body>
     <!-- Horizon grid backdrop (mirrors deck cover) -->
@@ -92,7 +108,7 @@
           </li>
         </ul>
 
-        <form class="signup" action="mailto:hello@yander.app" method="post" enctype="text/plain">
+        <form class="signup" id="signup-form" action="/subscribe" method="post" novalidate>
           <label class="signup__label" for="email">
             Be first to know when we launch
           </label>
@@ -106,13 +122,63 @@
               placeholder="you@somewhere.co.uk"
               aria-label="Email address"
             />
-            <button type="submit">
-              <span>Keep me posted</span>
+            <button type="submit" id="signup-submit">
+              <span class="signup__btn-label">Keep me posted</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
             </button>
           </div>
-          <p class="signup__hint">No spam. The occasional postcard from the road.</p>
+          <p class="signup__hint" id="signup-hint" role="status" aria-live="polite">No spam. The occasional postcard from the road.</p>
+          <input type="hidden" name="source" value="holding-page" />
         </form>
+        <script>
+          (function () {
+            var form = document.getElementById("signup-form");
+            if (!form) return;
+            var hint = document.getElementById("signup-hint");
+            var btn = document.getElementById("signup-submit");
+            var btnLabel = btn ? btn.querySelector(".signup__btn-label") : null;
+            var input = document.getElementById("email");
+
+            form.addEventListener("submit", function (ev) {
+              ev.preventDefault();
+              var email = (input.value || "").trim();
+              if (!email || email.indexOf("@") === -1) {
+                hint.textContent = "Please enter a valid email address.";
+                hint.classList.add("signup__hint--err");
+                input.focus();
+                return;
+              }
+              hint.classList.remove("signup__hint--err");
+              btn.disabled = true;
+              if (btnLabel) btnLabel.textContent = "Sending…";
+
+              fetch("/subscribe", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: email, source: "holding-page" }),
+              })
+                .then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); })
+                .then(function (data) {
+                  if (data && data.ok) {
+                    form.classList.add("signup--sent");
+                    hint.textContent = "You're on the list. We'll send a postcard when we're live.";
+                    if (btnLabel) btnLabel.textContent = "On the list";
+                  } else {
+                    btn.disabled = false;
+                    if (btnLabel) btnLabel.textContent = "Keep me posted";
+                    hint.textContent = (data && data.error) || "Something went wrong. Try again?";
+                    hint.classList.add("signup__hint--err");
+                  }
+                })
+                .catch(function () {
+                  btn.disabled = false;
+                  if (btnLabel) btnLabel.textContent = "Keep me posted";
+                  hint.textContent = "Couldn't reach the server. Please try again.";
+                  hint.classList.add("signup__hint--err");
+                });
+            });
+          })();
+        </script>
       </section>
 
       <footer class="foot">
