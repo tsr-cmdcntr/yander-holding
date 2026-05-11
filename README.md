@@ -18,6 +18,6 @@ Hosted on [Cloudflare Pages](https://pages.cloudflare.com/), auto-deploying from
 
 ## Brand
 
-> *The road less driven.*
+> *The route less taken.*
 
-Take the long way home.
+Find time to yander.

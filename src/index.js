@@ -252,8 +252,8 @@ async function sendWeeklyDigest(env) {
         `<th align="left" style="padding:6px 10px">Country</th>` +
         `<th align="left" style="padding:6px 10px">Source</th>` +
         `</tr></thead><tbody>${rowsHtml}</tbody></table>`
-      : `<p style="color:#6a5d50">Nothing came in this week. The road less driven, indeed.</p>`) +
-    `<p style="margin-top:24px;color:#6a5d50;font-style:italic;font-family:'Fraunces',Georgia,serif">Take the long way home.</p>` +
+      : `<p style="color:#6a5d50">Nothing came in this week. The route less taken, indeed.</p>`) +
+    `<p style="margin-top:24px;color:#6a5d50;font-style:italic;font-family:'Fraunces',Georgia,serif">Find time to yander.</p>` +
     `</div>`;
 
   const textRows = signups
@@ -263,7 +263,7 @@ async function sendWeeklyDigest(env) {
     `Yander weekly digest\n${rangeLabel}\n\n` +
     `${total} new signup${total === 1 ? "" : "s"} this week.\n\n` +
     (total > 0 ? textRows + "\n" : "Nothing came in this week.\n") +
-    `\nTake the long way home.\n`;
+    `\nFind time to yander.\n`;
 
   if (!env.RESEND_API_KEY) {
     console.error("Digest skipped — RESEND_API_KEY missing");

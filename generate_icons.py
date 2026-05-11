@@ -133,7 +133,7 @@ def make_og_card():
     # Tagline
     d.text(
         (text_x, 410),
-        "The road less driven.",
+        "The route less taken.",
         fill=PAPER,
         font=tagline_font,
     )
