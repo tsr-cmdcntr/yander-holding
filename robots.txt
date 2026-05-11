@@ -1,0 +1,9 @@
+# Yander — coming 2026.
+# We're open to indexing while we wait.
+
+User-agent: *
+Allow: /
+Disallow: /subscribe
+Disallow: /admin
+
+Sitemap: https://yander.app/sitemap.xml

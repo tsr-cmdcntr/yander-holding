@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>You've wandered off the road — Yander</title>
+    <meta name="description" content="That page isn't on the map. Yet. Head back to yander.app." />
+    <meta name="robots" content="noindex" />
+
+    <meta property="og:title" content="You've wandered off the road — Yander" />
+    <meta property="og:description" content="That page isn't on the map. Yet." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yander.app/" />
+    <meta property="og:image" content="https://yander.app/assets/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0a3d24" />
+
+    <link rel="icon" href="/assets/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      /* Page-local tweaks for the 404. Re-uses the global gradient + perspective grid. */
+      .nf {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 56px 24px 80px;
+        text-align: center;
+      }
+      .nf__code {
+        font-family: "Fraunces", Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(96px, 22vw, 196px);
+        line-height: 1;
+        letter-spacing: -0.04em;
+        color: var(--paper);
+        opacity: 0.92;
+        margin: 0;
+      }
+      .nf__code em {
+        font-style: italic;
+        color: var(--amber);
+      }
+      .nf__headline {
+        font-family: "Fraunces", Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(28px, 5.2vw, 42px);
+        line-height: 1.1;
+        color: var(--paper);
+        margin: 18px 0 14px;
+      }
+      .nf__lede {
+        color: var(--paper-soft);
+        font-size: 1.05rem;
+        line-height: 1.6;
+        max-width: 46ch;
+        margin: 0 auto 28px;
+      }
+      .nf__cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 22px;
+        border-radius: 999px;
+        background: var(--amber);
+        color: var(--ink);
+        font-family: "Inter", system-ui, sans-serif;
+        font-weight: 600;
+        font-size: 0.98rem;
+        text-decoration: none;
+        box-shadow: 0 1px 0 rgba(15, 90, 54, 0.4), 0 10px 26px -12px rgba(217, 122, 60, 0.55);
+        transition: transform 160ms ease, filter 160ms ease;
+      }
+      .nf__cta:hover {
+        filter: brightness(1.06);
+        transform: translateY(-1px);
+      }
+      .nf__cta svg {
+        width: 18px;
+        height: 18px;
+      }
+      .nf__sig {
+        margin-top: 56px;
+        color: var(--paper-soft);
+        font-family: "Fraunces", Georgia, serif;
+        font-style: italic;
+        font-size: 0.95rem;
+        opacity: 0.75;
+      }
+      .nf__compass {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 4px;
+        opacity: 0.92;
+      }
+    </style>
+  </head>
+  <body>
+    <svg class="topo" aria-hidden="true" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="horizon-fade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#f7f3ec" stop-opacity="0" />
+          <stop offset="55%" stop-color="#f7f3ec" stop-opacity="0.10" />
+          <stop offset="100%" stop-color="#f7f3ec" stop-opacity="0" />
+        </linearGradient>
+        <mask id="horizon-mask">
+          <rect x="0" y="0" width="1600" height="900" fill="url(#horizon-fade)" />
+        </mask>
+      </defs>
+      <g stroke="#f7f3ec" stroke-opacity="0.18" stroke-width="0.6" fill="none" mask="url(#horizon-mask)">
+        <line x1="-400" y1="900" x2="760" y2="540" />
+        <line x1="-100" y1="900" x2="780" y2="540" />
+        <line x1="200" y1="900" x2="795" y2="540" />
+        <line x1="500" y1="900" x2="805" y2="540" />
+        <line x1="800" y1="900" x2="815" y2="540" />
+        <line x1="1100" y1="900" x2="825" y2="540" />
+        <line x1="1400" y1="900" x2="835" y2="540" />
+        <line x1="1700" y1="900" x2="845" y2="540" />
+        <line x1="2000" y1="900" x2="855" y2="540" />
+      </g>
+      <g fill="none" stroke="#f7f3ec" stroke-opacity="0.10" stroke-width="1">
+        <path d="M0,560 C300,540 520,548 760,540 C1020,530 1280,545 1600,540" />
+        <path d="M0,610 C260,592 480,600 760,592 C1040,584 1280,594 1600,588" />
+        <path d="M0,660 C240,640 460,648 740,640 C1040,632 1280,642 1600,636" />
+      </g>
+    </svg>
+
+    <main class="page">
+      <section class="nf">
+        <img class="nf__compass" src="/assets/yander-emblem.png" alt="" aria-hidden="true" width="120" height="120" />
+        <p class="nf__code">4<em>0</em>4</p>
+        <h1 class="nf__headline">You've wandered off the road.</h1>
+        <p class="nf__lede">
+          That page isn't on the map &mdash; not yet, anyway. Let's get you back to
+          somewhere worth heading to.
+        </p>
+        <a class="nf__cta" href="/">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg>
+          <span>Take me home</span>
+        </a>
+        <p class="nf__sig">Take the long way home.</p>
+      </section>
+    </main>
+  </body>
+</html>

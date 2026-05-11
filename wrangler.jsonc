@@ -10,7 +10,20 @@
   "assets": {
     "directory": ".",
     "binding": "ASSETS",
-    "not_found_handling": "single-page-application",
+    "not_found_handling": "none",
     "run_worker_first": true
+  },
+  // KV namespace for durable signup storage. Add this once you've created the
+  // namespace in Cloudflare dashboard → Storage & Databases → KV → Create
+  // (suggested name: "yander-signups"). Paste the namespace ID here:
+  //
+  // "kv_namespaces": [
+  //   { "binding": "SIGNUPS", "id": "<paste-id-here>" }
+  // ],
+  //
+  // Until then signups still work — they just aren't stored, only emailed.
+  "triggers": {
+    // Weekly digest: every Monday at 09:00 UTC.
+    "crons": ["0 9 * * 1"]
   }
 }
