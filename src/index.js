@@ -342,7 +342,20 @@ export default {
 
     // 3. Known good paths -> assets binding.
     if (KNOWN_PATHS.has(url.pathname) || looksLikeAsset(url.pathname)) {
-      return env.ASSETS.fetch(request);
+      const resp = await env.ASSETS.fetch(request);
+      // The assets binding sometimes mis-detects content-type for .xml.
+      // Force it for the sitemap so crawlers parse it correctly.
+      if (url.pathname === "/sitemap.xml" && resp.status === 200) {
+        const body = await resp.text();
+        return new Response(body, {
+          status: 200,
+          headers: {
+            "Content-Type": "application/xml; charset=utf-8",
+            "Cache-Control": "public, max-age=3600",
+          },
+        });
+      }
+      return resp;
     }
 
     // 4. Anything else: branded 404.
