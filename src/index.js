@@ -305,6 +305,8 @@ const KNOWN_PATHS = new Set([
   "/terms.html",
   "/support",
   "/support.html",
+  "/attribution",
+  "/attribution.html",
 ]);
 
 // Pretty URLs without .html — map them to the underlying asset path.
@@ -312,6 +314,7 @@ const PRETTY_URL_MAP = {
   "/privacy": "/privacy.html",
   "/terms": "/terms.html",
   "/support": "/support.html",
+  "/attribution": "/attribution.html",
 };
 
 function looksLikeAsset(pathname) {

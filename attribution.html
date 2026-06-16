@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Attribution — Yander</title>
+<meta name="description" content="The open data and open source that Yander is built on, the licences they use, and the credits we display." />
+<link rel="canonical" href="https://yander.app/attribution" />
+<meta property="og:title" content="Attribution — Yander" />
+<meta property="og:description" content="The shoulders we stand on." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://yander.app/attribution" />
+<meta property="og:image" content="https://yander.app/assets/og.png" />
+<meta property="og:locale" content="en_GB" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#0a3d24" />
+<link rel="icon" href="/assets/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/styles.css" />
+<link rel="stylesheet" href="/legal.css" />
+</head>
+<body>
+
+<svg class="topo" aria-hidden="true" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="horizon-fade-a" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7f3ec" stop-opacity="0" />
+      <stop offset="55%" stop-color="#f7f3ec" stop-opacity="0.10" />
+      <stop offset="100%" stop-color="#f7f3ec" stop-opacity="0" />
+    </linearGradient>
+    <mask id="horizon-mask-a"><rect x="0" y="0" width="1600" height="900" fill="url(#horizon-fade-a)" /></mask>
+  </defs>
+  <g stroke="#f7f3ec" stroke-opacity="0.18" stroke-width="0.6" fill="none" mask="url(#horizon-mask-a)">
+    <line x1="-400" y1="900" x2="760" y2="540" />
+    <line x1="-100" y1="900" x2="780" y2="540" />
+    <line x1="200" y1="900" x2="795" y2="540" />
+    <line x1="500" y1="900" x2="805" y2="540" />
+    <line x1="800" y1="900" x2="815" y2="540" />
+    <line x1="1100" y1="900" x2="825" y2="540" />
+    <line x1="1400" y1="900" x2="835" y2="540" />
+    <line x1="1700" y1="900" x2="845" y2="540" />
+    <line x1="2000" y1="900" x2="855" y2="540" />
+  </g>
+  <g fill="none" stroke="#f7f3ec" stroke-opacity="0.10" stroke-width="1">
+    <path d="M0,560 C300,540 520,548 760,540 C1020,530 1280,545 1600,540" />
+    <path d="M0,610 C260,592 480,600 760,592 C1040,584 1280,594 1600,588" />
+    <path d="M0,660 C240,640 460,648 740,640 C1040,632 1280,642 1600,636" />
+  </g>
+</svg>
+
+<div class="legal-page">
+
+  <header class="legal-nav">
+    <a href="/" class="brand" aria-label="Yander home">
+      <img class="emblem" src="/assets/yander-y.png" alt="" width="60" height="72" />
+      <div class="brand__text">
+        <div class="wordmark">yander</div>
+      </div>
+    </a>
+    <nav class="legal-nav-links" aria-label="Legal pages">
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="/attribution" aria-current="page">Attribution</a>
+      <a href="/support">Support</a>
+      <a href="/">Home</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="legal-hero">
+      <span class="eyebrow">Attribution</span>
+      <h1>The shoulders <em>we stand on.</em></h1>
+      <p class="lede">Yander is built on the work of many open communities. This page lists every external data source, the licence under which we use it, and the credits we display.</p>
+      <div class="legal-meta">
+        <span>Last updated 15 June 2026</span>
+        <span>Open data &amp; open source</span>
+      </div>
+    </section>
+
+    <article class="legal-prose">
+
+      <p class="lede-intro">We aim to go beyond the strict legal minimum where the spirit of a licence asks us to. For a quick reference, the <strong>short attribution strings</strong> required on the map and on relevant UI surfaces are reproduced verbatim in <a href="#strings">Section 6</a>. Where a project requests a specific wording, we use it exactly.</p>
+      <p>If you spot an attribution we are missing or have got wrong, please email <a href="mailto:legal@yander.app">legal@yander.app</a> — we will fix it as quickly as we can.</p>
+
+      <nav class="legal-toc" aria-label="Contents">
+        <h2>On this page</h2>
+        <ol>
+          <li><a href="#osm">OpenStreetMap</a></li>
+          <li><a href="#osrm">OSRM</a></li>
+          <li><a href="#valhalla">Valhalla</a></li>
+          <li><a href="#os">Ordnance Survey (OS Data Hub)</a></li>
+          <li><a href="#wiki">Wikipedia &amp; Wikimedia Commons</a></li>
+          <li><a href="#strings">Attribution strings used in the app</a></li>
+          <li><a href="#deps">Other dependencies</a></li>
+          <li><a href="#changes">Changes to this page</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
+
+      <h2 id="osm">1. OpenStreetMap</h2>
+      <h3>What we use it for</h3>
+      <p>OpenStreetMap is the primary source of the road, path, water and place data behind every Yander route. We use OpenStreetMap data for:</p>
+      <ul>
+        <li>the underlying road and footpath graph that our routing engines (OSRM and Valhalla) operate on;</li>
+        <li>searching, displaying and describing places (points of interest, parks, rivers, lakes, towns);</li>
+        <li>map tiles outside of Great Britain, served by community and commercial OSM tile providers;</li>
+        <li>enriching saved routes with names, surface, tracktype and other tags.</li>
+      </ul>
+      <h3>Licence</h3>
+      <ul>
+        <li><strong>Data:</strong> Open Database Licence 1.0 (ODbL). Full text: <a href="https://opendatacommons.org/licenses/odbl/1-0/" rel="noopener">opendatacommons.org/licenses/odbl/1-0/</a></li>
+        <li><strong>Cartography:</strong> generally Creative Commons BY-SA 2.0, per the OpenStreetMap Foundation's <a href="https://www.openstreetmap.org/copyright" rel="noopener">cartography licence note</a>.</li>
+      </ul>
+      <h3>Required attribution</h3>
+      <div class="callout"><p><strong>© OpenStreetMap contributors</strong></p></div>
+      <p>We show this credit on every map surface where OSM data is visible (bottom-right of the map), in this Attribution page, and in our Terms of Service. The phrase links to <a href="https://www.openstreetmap.org/copyright" rel="noopener">openstreetmap.org/copyright</a> in the live app, as recommended by the OSM Foundation.</p>
+      <h3>Compliance commitments</h3>
+      <ul>
+        <li>We do <strong>not</strong> redistribute raw OSM data. Yander queries the road graph at runtime; users cannot bulk-export OSM tiles or geometries from the app.</li>
+        <li>Any derivative database we publish in future (for example, a curated public dataset of scenic routes) will itself be published under ODbL, in line with the share-alike requirement.</li>
+        <li>Where we display OSM data alongside non-OSM data (for example, OS feature density), we make clear which source each element comes from.</li>
+      </ul>
+
+      <h2 id="osrm">2. OSRM (Open Source Routing Machine)</h2>
+      <h3>What we use it for</h3>
+      <p>OSRM is the primary routing engine for driving, walking and cycling routes inside Yander. We run the public OSRM demo endpoints and self-hosted OSRM instances against the OpenStreetMap graph.</p>
+      <h3>Licence</h3>
+      <p><strong>OSRM:</strong> BSD 2-Clause Licence. Full text: <a href="https://github.com/Project-OSRM/osrm-backend/blob/master/LICENSE.TXT" rel="noopener">github.com/Project-OSRM/osrm-backend</a>.</p>
+      <h3>Attribution</h3>
+      <p>The BSD 2-Clause Licence requires us to retain the OSRM copyright notice in any redistribution of the OSRM source code, but does not require user-facing attribution. We nevertheless credit OSRM here and in our Terms of Service because we believe attribution is good practice when a project does this much heavy lifting for us.</p>
+      <div class="callout"><p><strong>Routing by OSRM</strong> (<a href="https://project-osrm.org" rel="noopener">project-osrm.org</a>)</p></div>
+
+      <h2 id="valhalla">3. Valhalla</h2>
+      <h3>What we use it for</h3>
+      <p>Valhalla is our secondary routing engine. We use Valhalla as a fallback when OSRM is unavailable or times out, and for multi-stop routing, isochrones and certain scenic-cost optimisations that we have authored on top of Valhalla's customisable costing.</p>
+      <h3>Licence</h3>
+      <p><strong>Valhalla:</strong> MIT Licence. Full text: <a href="https://github.com/valhalla/valhalla/blob/master/COPYING" rel="noopener">github.com/valhalla/valhalla</a>.</p>
+      <h3>Attribution</h3>
+      <p>The MIT Licence requires us to retain the copyright notice in any redistribution of the source code, but does not require user-facing attribution. We nevertheless credit Valhalla here and in our Terms of Service.</p>
+      <div class="callout"><p><strong>Routing by Valhalla</strong> (<a href="https://valhalla.github.io/valhalla/" rel="noopener">valhalla.github.io</a>)</p></div>
+
+      <h2 id="os">4. Ordnance Survey (OS Data Hub)</h2>
+      <h3>What we use it for</h3>
+      <p>Within Great Britain, we use the OS Data Hub for two purposes:</p>
+      <ul>
+        <li><strong>OS Maps API</strong> — raster map tiles in OS Outdoor, Light and Road styles, served via our server-side proxy so that the OS Data Hub key is never exposed to the browser;</li>
+        <li><strong>OS Features API and OS NGD API – Features</strong> — feature data (greenspace, national parks, paths and roads) used to score the walk-friendliness of a route ("OS-informed" suitability labels such as "Path-friendly" or "Mostly streets").</li>
+      </ul>
+      <p>We do <strong>not</strong> use OS data outside Great Britain.</p>
+      <h3>Licence</h3>
+      <p>Use is governed by our OS Data Hub subscription and the OS Open Data Licence / OS Data Hub Terms and Conditions. See <a href="https://osdatahub.os.uk/legal" rel="noopener">osdatahub.os.uk/legal</a>.</p>
+      <h3>Required attribution</h3>
+      <div class="callout"><p><strong>Contains OS data © Crown copyright and database right 2026</strong></p></div>
+      <p>We show this credit on every map view where OS tiles are visible, alongside any OS-derived UI label, in this Attribution page, and in our Terms of Service. The string is generated server-side by <code>/api/os/config</code> so it stays in lockstep with the year and any future wording changes required by OS.</p>
+      <h3>Compliance commitments</h3>
+      <ul>
+        <li>We do <strong>not</strong> redistribute raw OS data or OS tiles. Tiles are served on-the-fly through our proxy for the duration of a user session only, and are not bulk-cached for offline reuse.</li>
+        <li>OS-derived feature counts are summarised into honest scores; we never present OS data as if it were the user's own.</li>
+        <li>We respect any rate limits and entitlement boundaries set by OS Data Hub.</li>
+      </ul>
+
+      <h2 id="wiki">5. Wikipedia and Wikimedia Commons</h2>
+      <h3>What we use it for</h3>
+      <p>Wikipedia and Wikimedia Commons help us tell the story of the places along a Yander route:</p>
+      <ul>
+        <li>short "extract" summaries shown when you tap a point of interest or epic-drive stop, fetched live from the Wikipedia REST API;</li>
+        <li>thumbnail and full-size images for places and landmarks, fetched live from Wikipedia article images, Wikidata's <code>P18</code> claim, and the Wikimedia Commons search and image-info APIs.</li>
+      </ul>
+      <h3>Licence</h3>
+      <ul>
+        <li><strong>Wikipedia article text</strong> (including the "extract" summaries we use) is licensed under <strong>Creative Commons Attribution–ShareAlike 4.0 International (CC BY-SA 4.0)</strong>. Full text: <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode" rel="noopener">creativecommons.org/licenses/by-sa/4.0</a>.</li>
+        <li><strong>Wikimedia Commons media</strong> is licensed on a per-file basis. The most common licences are CC BY-SA (various versions), CC BY (various versions), CC0 / public domain, and the GNU Free Documentation Licence. Each file's licence and credit information is available from its file description page on commons.wikimedia.org.</li>
+      </ul>
+      <h3>Required attribution</h3>
+      <p>For Wikipedia text excerpts we display:</p>
+      <div class="callout"><p><strong>From the Wikipedia article "&lt;article title&gt;" by Wikipedia contributors, licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener">CC BY-SA 4.0</a>.</strong></p></div>
+      <p>The article title links to the canonical Wikipedia page, satisfying CC BY-SA 4.0's requirements to attribute the work to its author, link to the work, name the licence and link to its text, and indicate that the material has been modified if we have edited it (we sometimes truncate to a single sentence — we describe this on the page).</p>
+      <p>For Commons images we display, alongside the image:</p>
+      <div class="callout"><p><strong>Image: &lt;file title&gt;, by &lt;author or "Wikimedia Commons contributors"&gt;, licensed under &lt;licence&gt;.</strong></p></div>
+      <p>The file title links to the canonical Commons file page so anyone can audit the original licence terms and full attribution. If a particular file requires GFDL or a different specific phrasing, we follow the wording the uploader requests.</p>
+      <h3>ShareAlike implications</h3>
+      <p>CC BY-SA 4.0's share-alike clause means that if we adapt a Wikipedia article extract, that <strong>adapted text</strong> must also be made available under CC BY-SA 4.0 or a compatible licence. Where Yander shows AI-generated descriptions that may themselves have been informed by Wikipedia content, we treat the AI output as <strong>inspired by, but distinct from</strong>, Wikipedia text — and we never present AI-generated paragraphs as if they were the Wikipedia article. We label every direct Wikipedia extract clearly as such, with the attribution above.</p>
+
+      <h2 id="strings">6. Attribution strings used in the app</h2>
+      <p>These are the canonical short strings; the app uses them verbatim wherever the underlying source is displayed.</p>
+      <div class="legal-table-wrap">
+        <table class="legal-table">
+          <thead><tr><th>Surface</th><th>Attribution</th></tr></thead>
+          <tbody>
+            <tr><td>Global map (no OS basemap)</td><td><code>© OpenStreetMap contributors</code></td></tr>
+            <tr><td>Global map (OS basemap selected)</td><td><code>Contains OS data © Crown copyright and database right 2026 · © OpenStreetMap contributors</code></td></tr>
+            <tr><td>OS-informed UI label tooltip</td><td><code>OS-informed: see Attribution. Route geometry is from OpenStreetMap via OSRM / Valhalla.</code></td></tr>
+            <tr><td>Wikipedia summary card</td><td><code>From the Wikipedia article "&lt;title&gt;" by Wikipedia contributors, licensed under CC BY-SA 4.0.</code></td></tr>
+            <tr><td>Wikimedia Commons image caption</td><td><code>Image: &lt;file title&gt;, &lt;licence&gt; · via Wikimedia Commons</code></td></tr>
+            <tr><td>App footer</td><td><code>Map data © OpenStreetMap contributors · GB enrichment © Crown copyright (OS Data Hub) · Place data via Wikipedia (CC BY-SA 4.0) · Routing by OSRM and Valhalla</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="deps">7. Other dependencies</h2>
+      <p>Yander stands on the shoulders of many open-source projects beyond those whose licences require attribution. We are grateful for, among others:</p>
+      <ul>
+        <li><a href="https://maplibre.org/" rel="noopener">MapLibre GL</a> (rendering)</li>
+        <li><a href="https://leafletjs.com/" rel="noopener">Leaflet</a> (legacy rendering, being retired)</li>
+        <li><a href="https://react.dev/" rel="noopener">React</a>, <a href="https://expressjs.com/" rel="noopener">Express</a>, <a href="https://orm.drizzle.team/" rel="noopener">Drizzle ORM</a>, <a href="https://www.passportjs.org/" rel="noopener">Passport.js</a> (application stack)</li>
+        <li><a href="https://overpass-api.de/" rel="noopener">Overpass API</a> (OSM querying)</li>
+        <li><a href="https://nominatim.openstreetmap.org/" rel="noopener">Nominatim</a> (geocoding)</li>
+        <li><a href="https://openfreemap.org/" rel="noopener">OpenFreeMap</a> (non-GB vector tiles)</li>
+      </ul>
+      <p>Their respective licences and copyright notices are preserved in our source code distribution.</p>
+
+      <h2 id="changes">8. Changes to this page</h2>
+      <p>We may update this page when we add or remove a data source, when a licence changes, or when a project asks for different wording. The "Last updated" date at the top reflects the most recent revision. We will not remove an attribution as long as the underlying data is still being used.</p>
+
+      <h2 id="contact">9. Contact</h2>
+      <ul>
+        <li><strong>Attribution corrections:</strong> <a href="mailto:legal@yander.app">legal@yander.app</a></li>
+        <li><strong>Take-down requests for copyrighted material:</strong> <a href="mailto:legal@yander.app">legal@yander.app</a> — we will respond within 5 working days.</li>
+      </ul>
+
+      <hr/>
+      <p style="color: rgba(247,243,236,0.5); font-size: 0.85rem;">
+        Last updated 15 June 2026 · Reviewed by Sean Leishman, sole trader, United Kingdom.
+      </p>
+
+    </article>
+
+    <section class="legal-crosslinks">
+      <a href="/privacy"><span class="label">Companion document</span><span class="target">Privacy Policy →</span></a>
+      <a href="/terms"><span class="label">Companion document</span><span class="target">Terms of Service →</span></a>
+      <a href="/support"><span class="label">Help</span><span class="target">Support &amp; FAQ →</span></a>
+    </section>
+
+  </main>
+
+  <footer class="legal-foot">
+    <p>© 2026 Yander · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/attribution">Attribution</a> · <a href="/support">Support</a> · <a href="mailto:hello@yander.app">hello@yander.app</a> · Made in the UK</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
