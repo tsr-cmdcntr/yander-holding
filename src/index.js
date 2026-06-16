@@ -295,10 +295,24 @@ const KNOWN_PATHS = new Set([
   "/",
   "/index.html",
   "/styles.css",
+  "/legal.css",
   "/sitemap.xml",
   "/robots.txt",
   "/404.html",
+  "/privacy",
+  "/privacy.html",
+  "/terms",
+  "/terms.html",
+  "/support",
+  "/support.html",
 ]);
+
+// Pretty URLs without .html — map them to the underlying asset path.
+const PRETTY_URL_MAP = {
+  "/privacy": "/privacy.html",
+  "/terms": "/terms.html",
+  "/support": "/support.html",
+};
 
 function looksLikeAsset(pathname) {
   // Anything under /assets/ or with a file extension we want to pass through
@@ -340,7 +354,21 @@ export default {
       return handleSubscribe(request, env);
     }
 
-    // 3. Known good paths -> assets binding.
+    // 3. Pretty URL rewrites for legal pages.
+    if (PRETTY_URL_MAP[url.pathname]) {
+      const rewritten = new URL(request.url);
+      rewritten.pathname = PRETTY_URL_MAP[url.pathname];
+      const resp = await env.ASSETS.fetch(new Request(rewritten.toString(), { method: "GET", headers: request.headers }));
+      return new Response(resp.body, {
+        status: resp.status,
+        headers: {
+          "Content-Type": "text/html; charset=utf-8",
+          "Cache-Control": "public, max-age=300",
+        },
+      });
+    }
+
+    // 4. Known good paths -> assets binding.
     if (KNOWN_PATHS.has(url.pathname) || looksLikeAsset(url.pathname)) {
       const resp = await env.ASSETS.fetch(request);
       // The assets binding sometimes mis-detects content-type for .xml.
@@ -358,7 +386,7 @@ export default {
       return resp;
     }
 
-    // 4. Anything else: branded 404.
+    // 5. Anything else: branded 404.
     return serve404Page(env, request);
   },
 
