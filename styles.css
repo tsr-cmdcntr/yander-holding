@@ -426,6 +426,17 @@ svg {
 .legal a:hover {
   border-bottom-color: var(--amber);
 }
+.legal--company {
+  margin-top: 8px;
+  font-size: 0.78rem;
+  color: rgba(247, 243, 236, 0.5);
+  max-width: 64ch;
+  line-height: 1.55;
+}
+.legal--company strong {
+  color: rgba(247, 243, 236, 0.7);
+  font-weight: 600;
+}
 
 /* ------- Motion ------- */
 @keyframes fadeUp {

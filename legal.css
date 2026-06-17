@@ -357,6 +357,17 @@
 }
 .legal-foot a:hover { color: var(--amber); }
 .legal-foot p { margin: 12px 0 0; }
+.legal-foot__company {
+  max-width: 64ch;
+  margin: 14px auto 0 !important;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: rgba(247, 243, 236, 0.42);
+}
+.legal-foot__company strong {
+  color: rgba(247, 243, 236, 0.62);
+  font-weight: 600;
+}
 
 @media (max-width: 600px) {
   .legal-crosslinks {
