@@ -656,6 +656,21 @@ export default {
       return handleUnsubscribe(request, env);
     }
 
+    // 2c. Diagnostic endpoint — booleans only, no secret material leaked.
+    // Reports whether each binding is visible to the worker at runtime.
+    // Remove after debug.
+    if (url.pathname === "/__diag") {
+      return json(
+        {
+          resend_key_present: typeof env.RESEND_API_KEY === "string" && env.RESEND_API_KEY.length > 0,
+          unsubscribe_secret_present: typeof env.UNSUBSCRIBE_SECRET === "string" && env.UNSUBSCRIBE_SECRET.length > 0,
+          signups_kv_present: typeof env.SIGNUPS === "object" && env.SIGNUPS !== null,
+          assets_present: typeof env.ASSETS === "object" && env.ASSETS !== null,
+        },
+        200
+      );
+    }
+
     // 3. Pretty URL rewrites for legal pages.
     if (PRETTY_URL_MAP[url.pathname]) {
       const rewritten = new URL(request.url);
