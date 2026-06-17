@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Yander — The route less taken.</title>
-    <meta name="description" content="A scenic route planner for drivers, cyclists, and walkers. Beyond the motorways, away from the crowds. Drive mode with turn-by-turn voice, hand-curated detours, and Britain's mapping at its core. Launching 2026." />
+    <meta name="description" content="A scenic route planner for drivers, cyclists, and walkers — beyond the motorways, away from the crowds, yander to somewhere worth heading to. Launching soon." />
 
     <link rel="canonical" href="https://yander.app/" />
 
@@ -34,14 +34,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
 
     <link rel="stylesheet" href="styles.css" />
+
+    <!--
+      Cloudflare Web Analytics is configured via Automatic Setup at the zone level
+      (dashboard → Analytics & Logs → Web Analytics). No beacon script is needed in
+      the page — Cloudflare injects it at the edge.
+    -->
   </head>
   <body>
-    <!-- Horizon grid backdrop -->
+    <!-- Horizon grid backdrop (mirrors deck cover) -->
     <svg class="topo" aria-hidden="true" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
       <defs>
         <linearGradient id="horizon-fade" x1="0" y1="0" x2="0" y2="1">
@@ -53,6 +59,7 @@
           <rect x="0" y="0" width="1600" height="900" fill="url(#horizon-fade)" />
         </mask>
       </defs>
+      <!-- Perspective grid: convergent verticals -->
       <g stroke="#f7f3ec" stroke-opacity="0.18" stroke-width="0.6" fill="none" mask="url(#horizon-mask)">
         <line x1="-400" y1="900" x2="760" y2="540" />
         <line x1="-100" y1="900" x2="780" y2="540" />
@@ -64,6 +71,7 @@
         <line x1="1700" y1="900" x2="845" y2="540" />
         <line x1="2000" y1="900" x2="855" y2="540" />
       </g>
+      <!-- Horizon ridges (very subtle, echoes scenic landscape) -->
       <g fill="none" stroke="#f7f3ec" stroke-opacity="0.10" stroke-width="1">
         <path d="M0,560 C300,540 520,548 760,540 C1020,530 1280,545 1600,540" />
         <path d="M0,610 C260,592 480,600 760,592 C1040,584 1280,594 1600,588" />
@@ -72,30 +80,20 @@
     </svg>
 
     <main class="page">
-
-      <!-- ============ HEADER ============ -->
       <header class="brand">
         <img class="emblem" src="/assets/yander-y.png" alt="Yander — an organic Y mark whose stem winds like a road to a destination dot" width="120" height="144" />
         <div class="brand__text">
           <div class="wordmark">yander</div>
           <div class="brand__sub">Coming 2026</div>
         </div>
-        <nav class="topnav" aria-label="Primary">
-          <a href="#what">What it does</a>
-          <a href="#showcase">Preview</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#join">Join</a>
-        </nav>
       </header>
 
-      <!-- ============ HERO ============ -->
       <section class="hero">
-        <p class="eyebrow"><span class="dot"></span> Launching 2026 · Built in Britain</p>
+        <p class="eyebrow"><span class="dot"></span> Launching soon</p>
         <h1 class="headline">The route<br />less <em>taken.</em></h1>
         <p class="lede">
-          A scenic route planner for drivers, cyclists, and walkers — and a turn-by-turn
-          drive mode that takes the long way home on purpose. Beyond the motorways. Away
-          from the crowds. Yander to somewhere worth heading to.
+          A scenic route planner for drivers, cyclists, and walkers — beyond the motorways,
+          away from the crowds, yander to somewhere worth heading to.
         </p>
 
         <ul class="modes" aria-label="Travel modes">
@@ -135,391 +133,57 @@
           <p class="signup__hint" id="signup-hint" role="status" aria-live="polite">No spam. The occasional postcard from the road.</p>
           <input type="hidden" name="source" value="holding-page" />
         </form>
+        <script>
+          (function () {
+            var form = document.getElementById("signup-form");
+            if (!form) return;
+            var hint = document.getElementById("signup-hint");
+            var btn = document.getElementById("signup-submit");
+            var btnLabel = btn ? btn.querySelector(".signup__btn-label") : null;
+            var input = document.getElementById("email");
+
+            form.addEventListener("submit", function (ev) {
+              ev.preventDefault();
+              var email = (input.value || "").trim();
+              if (!email || email.indexOf("@") === -1) {
+                hint.textContent = "Please enter a valid email address.";
+                hint.classList.add("signup__hint--err");
+                input.focus();
+                return;
+              }
+              hint.classList.remove("signup__hint--err");
+              btn.disabled = true;
+              if (btnLabel) btnLabel.textContent = "Sending…";
+
+              fetch("/subscribe", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: email, source: "holding-page" }),
+              })
+                .then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); })
+                .then(function (data) {
+                  if (data && data.ok) {
+                    form.classList.add("signup--sent");
+                    hint.textContent = "You're on the list. We'll send a postcard when we're live.";
+                    if (btnLabel) btnLabel.textContent = "On the list";
+                  } else {
+                    btn.disabled = false;
+                    if (btnLabel) btnLabel.textContent = "Keep me posted";
+                    hint.textContent = (data && data.error) || "Something went wrong. Try again?";
+                    hint.classList.add("signup__hint--err");
+                  }
+                })
+                .catch(function () {
+                  btn.disabled = false;
+                  if (btnLabel) btnLabel.textContent = "Keep me posted";
+                  hint.textContent = "Couldn't reach the server. Please try again.";
+                  hint.classList.add("signup__hint--err");
+                });
+            });
+          })();
+        </script>
       </section>
 
-      <!-- ============ MANIFESTO ============ -->
-      <section class="manifesto" aria-label="Why Yander exists">
-        <div class="manifesto__rule"><span></span></div>
-        <p class="manifesto__kicker">A small idea</p>
-        <p class="manifesto__body">
-          Every other map app asks the same question: <em>what's fastest?</em>
-          Yander asks a different one — <em>what's worth seeing on the way?</em>
-          A back lane through the Cotswolds. A coast road you'd never have found.
-          A pub at the end of a green dot you didn't know existed.
-        </p>
-        <p class="manifesto__body">
-          We're building the routing engine for the journey, not the arrival.
-        </p>
-      </section>
-
-      <!-- ============ THREE PILLARS ============ -->
-      <section class="pillars" id="what" aria-labelledby="what-h">
-        <header class="section__head">
-          <p class="eyebrow eyebrow--quiet">What Yander does differently</p>
-          <h2 id="what-h" class="section__title">Routing with a point of view.</h2>
-        </header>
-
-        <div class="pillar-grid">
-
-          <article class="pillar">
-            <div class="pillar__art" aria-hidden="true">
-              <svg viewBox="0 0 200 140" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                <!-- Stylised winding road -->
-                <path d="M10,120 C40,100 50,70 80,60 C110,50 130,80 160,70 C180,64 190,40 195,20" stroke="rgba(247,243,236,0.18)" stroke-width="14" stroke-linecap="round"/>
-                <path d="M10,120 C40,100 50,70 80,60 C110,50 130,80 160,70 C180,64 190,40 195,20" stroke="#e8954f"/>
-                <path d="M10,120 C40,100 50,70 80,60 C110,50 130,80 160,70 C180,64 190,40 195,20" stroke="#f7f3ec" stroke-dasharray="2 6" stroke-opacity="0.5"/>
-                <!-- Points of interest -->
-                <circle cx="80" cy="60" r="3.5" fill="#e8954f" stroke="none"/>
-                <circle cx="160" cy="70" r="3.5" fill="#e8954f" stroke="none"/>
-                <!-- Destination -->
-                <circle cx="195" cy="20" r="5" fill="#22a86a" stroke="none"/>
-                <circle cx="195" cy="20" r="9" stroke="#22a86a" stroke-opacity="0.4"/>
-              </svg>
-            </div>
-            <h3 class="pillar__title">Scenic by default</h3>
-            <p class="pillar__body">
-              Routes optimised for the view — not the motorway. Pull in viewpoints,
-              villages, woodland, coast, and the kind of B-roads locals know about.
-              Always with an honest ETA.
-            </p>
-          </article>
-
-          <article class="pillar">
-            <div class="pillar__art" aria-hidden="true">
-              <svg viewBox="0 0 200 140" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                <!-- Phone -->
-                <rect x="60" y="14" width="80" height="112" rx="14" stroke="rgba(247,243,236,0.22)" fill="rgba(247,243,236,0.04)"/>
-                <!-- Speedo arc -->
-                <path d="M82,80 A22,22 0 0 1 118,80" stroke="rgba(247,243,236,0.3)" stroke-width="3"/>
-                <path d="M82,80 A22,22 0 0 1 104,58" stroke="#e8954f" stroke-width="3"/>
-                <text x="100" y="80" text-anchor="middle" fill="#f7f3ec" font-family="Inter, system-ui" font-size="13" font-weight="600">42</text>
-                <text x="100" y="94" text-anchor="middle" fill="rgba(247,243,236,0.55)" font-family="Inter, system-ui" font-size="6" letter-spacing="0.1em">MPH</text>
-                <!-- Next instruction -->
-                <path d="M76,110 L90,110 L86,106 M90,110 L86,114" stroke="#22a86a"/>
-                <line x1="96" y1="110" x2="124" y2="110" stroke="rgba(247,243,236,0.4)"/>
-                <line x1="96" y1="118" x2="118" y2="118" stroke="rgba(247,243,236,0.25)"/>
-                <!-- Voice waves -->
-                <path d="M30,70 q4,-8 8,0 q4,8 8,0" stroke="#e8954f"/>
-                <path d="M154,70 q4,-8 8,0 q4,8 8,0" stroke="#e8954f"/>
-              </svg>
-            </div>
-            <h3 class="pillar__title">Drive mode, with voice</h3>
-            <p class="pillar__body">
-              Turn-by-turn navigation built for the back-road brief. Calm voice prompts,
-              big legible glances, background location that survives a phone call. A
-              co-pilot, not a chaperone.
-            </p>
-          </article>
-
-          <article class="pillar">
-            <div class="pillar__art" aria-hidden="true">
-              <svg viewBox="0 0 200 140" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                <!-- Compass / radius -->
-                <circle cx="100" cy="70" r="46" stroke="rgba(247,243,236,0.18)" stroke-dasharray="3 5"/>
-                <circle cx="100" cy="70" r="46" stroke="#e8954f" stroke-opacity="0.35"/>
-                <circle cx="100" cy="70" r="4" fill="#22a86a" stroke="none"/>
-                <!-- N marker -->
-                <text x="100" y="20" text-anchor="middle" fill="rgba(247,243,236,0.5)" font-family="Inter, system-ui" font-size="8" letter-spacing="0.15em">50 MILES</text>
-                <!-- Compass points (POIs) -->
-                <circle cx="138" cy="42" r="2.5" fill="#e8954f" stroke="none"/>
-                <circle cx="62" cy="86" r="2.5" fill="#e8954f" stroke="none"/>
-                <circle cx="124" cy="104" r="2.5" fill="#e8954f" stroke="none"/>
-                <circle cx="70" cy="48" r="2.5" fill="#e8954f" stroke="none"/>
-                <circle cx="146" cy="78" r="2.5" fill="#e8954f" stroke="none"/>
-              </svg>
-            </div>
-            <h3 class="pillar__title">Yander Free, properly free</h3>
-            <p class="pillar__body">
-              A genuine 50-mile sandbox. Plan, save, navigate — no trial timer, no
-              dark patterns. When you're ready for unlimited range, GPX, offline tiles
-              and Ordnance Survey detail, Yander Premium is one tap away.
-            </p>
-          </article>
-
-        </div>
-      </section>
-
-      <!-- ============ APP SHOWCASE ============ -->
-      <section class="showcase" id="showcase" aria-labelledby="showcase-h">
-        <header class="section__head section__head--center">
-          <p class="eyebrow eyebrow--quiet">A first look</p>
-          <h2 id="showcase-h" class="section__title">Designed for windscreens, lanes,<br/>and Sunday mornings.</h2>
-          <p class="section__lede">
-            Cream-paper interface, generous type, and the same warmth on a phone mount as
-            on a kitchen table. Pre-launch screens shown — final UI is improving daily.
-          </p>
-        </header>
-
-        <div class="phones">
-
-          <!-- Phone 1: Plan view -->
-          <figure class="phone phone--left" aria-label="Yander route planning view">
-            <svg viewBox="0 0 240 480" xmlns="http://www.w3.org/2000/svg">
-              <!-- Phone body -->
-              <rect x="2" y="2" width="236" height="476" rx="36" fill="#f7f3ec" stroke="rgba(247,243,236,0.3)" stroke-width="2"/>
-              <rect x="10" y="10" width="220" height="460" rx="28" fill="#fbf8f2"/>
-              <!-- Notch -->
-              <rect x="100" y="18" width="40" height="6" rx="3" fill="#2b231d" opacity="0.18"/>
-              <!-- Status bar -->
-              <text x="22" y="44" fill="#2b231d" font-family="Inter, system-ui" font-size="9" font-weight="600">9:41</text>
-              <!-- Top header -->
-              <text x="22" y="74" fill="#2b231d" font-family="Fraunces, Georgia, serif" font-size="20" font-weight="600">Plan a yander</text>
-              <text x="22" y="92" fill="#6a5d50" font-family="Inter, system-ui" font-size="9">Tuesday · scenic drive · 2 h</text>
-              <!-- From -->
-              <rect x="18" y="106" width="204" height="36" rx="10" fill="#fff" stroke="#e8dfd1"/>
-              <circle cx="32" cy="124" r="4" fill="#1a7a4a"/>
-              <text x="44" y="122" fill="#6a5d50" font-family="Inter, system-ui" font-size="7" letter-spacing="0.05em">FROM</text>
-              <text x="44" y="134" fill="#2b231d" font-family="Inter, system-ui" font-size="10" font-weight="500">Oxford, OX1</text>
-              <!-- To -->
-              <rect x="18" y="150" width="204" height="36" rx="10" fill="#fff" stroke="#e8dfd1"/>
-              <path d="M28,164 l8,-6 l0,12 z" fill="#d97a3c"/>
-              <text x="44" y="166" fill="#6a5d50" font-family="Inter, system-ui" font-size="7" letter-spacing="0.05em">TO</text>
-              <text x="44" y="178" fill="#2b231d" font-family="Inter, system-ui" font-size="10" font-weight="500">The Cotswolds (anywhere lovely)</text>
-              <!-- Map preview -->
-              <rect x="18" y="200" width="204" height="180" rx="12" fill="#eaddc7"/>
-              <!-- Map roads -->
-              <path d="M30,360 C70,330 80,290 120,260 C160,230 180,200 210,210" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/>
-              <path d="M30,360 C70,330 80,290 120,260 C160,230 180,200 210,210" stroke="#d97a3c" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-              <!-- POI dots -->
-              <circle cx="80" cy="305" r="4" fill="#1a7a4a"/>
-              <circle cx="140" cy="245" r="4" fill="#1a7a4a"/>
-              <circle cx="210" cy="210" r="5" fill="#d97a3c"/>
-              <!-- Bottom CTA -->
-              <rect x="18" y="408" width="204" height="42" rx="14" fill="#0f5a36"/>
-              <text x="120" y="434" text-anchor="middle" fill="#f7f3ec" font-family="Inter, system-ui" font-size="11" font-weight="600">Find a scenic route</text>
-            </svg>
-            <figcaption>Plan a yander — start, end, and the scenic in-between.</figcaption>
-          </figure>
-
-          <!-- Phone 2: Drive view -->
-          <figure class="phone phone--center" aria-label="Yander drive mode with turn-by-turn navigation">
-            <svg viewBox="0 0 240 480" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="2" width="236" height="476" rx="36" fill="#0a3d24" stroke="rgba(247,243,236,0.18)" stroke-width="2"/>
-              <rect x="10" y="10" width="220" height="460" rx="28" fill="#062418"/>
-              <rect x="100" y="18" width="40" height="6" rx="3" fill="#000" opacity="0.5"/>
-              <!-- Map background -->
-              <rect x="10" y="10" width="220" height="280" rx="28" fill="#0f5a36"/>
-              <path d="M20,280 C70,240 90,200 120,170 C150,140 180,110 220,90" stroke="rgba(247,243,236,0.18)" stroke-width="22" fill="none" stroke-linecap="round"/>
-              <path d="M20,280 C70,240 90,200 120,170 C150,140 180,110 220,90" stroke="#d97a3c" stroke-width="5" fill="none" stroke-linecap="round"/>
-              <circle cx="120" cy="170" r="9" fill="#22a86a"/>
-              <circle cx="120" cy="170" r="14" fill="none" stroke="#22a86a" stroke-opacity="0.4"/>
-              <!-- Instruction bar -->
-              <rect x="18" y="38" width="204" height="60" rx="14" fill="#f7f3ec"/>
-              <path d="M40,68 L60,68 L54,62 M60,68 L54,74" stroke="#0f5a36" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <text x="76" y="62" fill="#6a5d50" font-family="Inter, system-ui" font-size="7" letter-spacing="0.06em">IN 400 YARDS</text>
-              <text x="76" y="80" fill="#2b231d" font-family="Inter, system-ui" font-size="12" font-weight="600">Turn right onto B4632</text>
-              <!-- Bottom card -->
-              <rect x="10" y="290" width="220" height="180" rx="28" fill="#f7f3ec"/>
-              <text x="22" y="318" fill="#6a5d50" font-family="Inter, system-ui" font-size="8" letter-spacing="0.1em">ARRIVING</text>
-              <text x="22" y="346" fill="#2b231d" font-family="Fraunces, Georgia, serif" font-size="28" font-weight="600">11:42</text>
-              <text x="22" y="360" fill="#6a5d50" font-family="Inter, system-ui" font-size="9">12 mi · 28 min</text>
-              <!-- Speed -->
-              <rect x="156" y="304" width="60" height="60" rx="14" fill="#fff" stroke="#e8dfd1"/>
-              <text x="186" y="334" text-anchor="middle" fill="#2b231d" font-family="Fraunces, Georgia, serif" font-size="22" font-weight="600">38</text>
-              <text x="186" y="350" text-anchor="middle" fill="#6a5d50" font-family="Inter, system-ui" font-size="7" letter-spacing="0.1em">MPH</text>
-              <!-- Buttons -->
-              <rect x="18" y="380" width="100" height="40" rx="12" fill="#0f5a36"/>
-              <text x="68" y="404" text-anchor="middle" fill="#f7f3ec" font-family="Inter, system-ui" font-size="10" font-weight="600">End drive</text>
-              <rect x="124" y="380" width="92" height="40" rx="12" fill="none" stroke="#0f5a36" stroke-width="1.5"/>
-              <text x="170" y="404" text-anchor="middle" fill="#0f5a36" font-family="Inter, system-ui" font-size="10" font-weight="600">Mute voice</text>
-              <text x="120" y="446" text-anchor="middle" fill="#6a5d50" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="9">Take the long way home.</text>
-            </svg>
-            <figcaption>Drive mode — calm voice, big glances, hands on the wheel.</figcaption>
-          </figure>
-
-          <!-- Phone 3: Saved -->
-          <figure class="phone phone--right" aria-label="Yander saved routes">
-            <svg viewBox="0 0 240 480" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="2" width="236" height="476" rx="36" fill="#f7f3ec" stroke="rgba(247,243,236,0.3)" stroke-width="2"/>
-              <rect x="10" y="10" width="220" height="460" rx="28" fill="#fbf8f2"/>
-              <rect x="100" y="18" width="40" height="6" rx="3" fill="#2b231d" opacity="0.18"/>
-              <text x="22" y="44" fill="#2b231d" font-family="Inter, system-ui" font-size="9" font-weight="600">9:41</text>
-              <text x="22" y="74" fill="#2b231d" font-family="Fraunces, Georgia, serif" font-size="20" font-weight="600">Your yanders</text>
-              <text x="22" y="92" fill="#6a5d50" font-family="Inter, system-ui" font-size="9">7 saved · 142 mi this month</text>
-
-              <!-- Saved cards -->
-              <g>
-                <rect x="18" y="108" width="204" height="68" rx="12" fill="#fff" stroke="#e8dfd1"/>
-                <rect x="28" y="118" width="48" height="48" rx="8" fill="#eaddc7"/>
-                <path d="M32,156 C40,148 44,144 52,142 C60,140 64,148 72,148" stroke="#d97a3c" stroke-width="2" fill="none"/>
-                <text x="86" y="130" fill="#2b231d" font-family="Inter, system-ui" font-size="11" font-weight="600">Coast road · Whitby</text>
-                <text x="86" y="146" fill="#6a5d50" font-family="Inter, system-ui" font-size="8">38 mi · scenic · saved Sun</text>
-                <text x="86" y="162" fill="#1a7a4a" font-family="Inter, system-ui" font-size="8" font-weight="600">★ ★ ★ ★ ★</text>
-              </g>
-              <g>
-                <rect x="18" y="184" width="204" height="68" rx="12" fill="#fff" stroke="#e8dfd1"/>
-                <rect x="28" y="194" width="48" height="48" rx="8" fill="#e3d6bc"/>
-                <path d="M32,232 C42,224 50,212 60,214 C68,216 70,222 72,224" stroke="#1a7a4a" stroke-width="2" fill="none"/>
-                <text x="86" y="206" fill="#2b231d" font-family="Inter, system-ui" font-size="11" font-weight="600">Edge of the Dales loop</text>
-                <text x="86" y="222" fill="#6a5d50" font-family="Inter, system-ui" font-size="8">22 mi · cycle · saved Fri</text>
-                <text x="86" y="238" fill="#1a7a4a" font-family="Inter, system-ui" font-size="8" font-weight="600">★ ★ ★ ★ ☆</text>
-              </g>
-              <g>
-                <rect x="18" y="260" width="204" height="68" rx="12" fill="#fff" stroke="#e8dfd1"/>
-                <rect x="28" y="270" width="48" height="48" rx="8" fill="#d9c8a8"/>
-                <path d="M32,308 C40,302 48,294 56,296 C64,298 68,306 72,300" stroke="#d97a3c" stroke-width="2" fill="none"/>
-                <text x="86" y="282" fill="#2b231d" font-family="Inter, system-ui" font-size="11" font-weight="600">Lanes round Lavenham</text>
-                <text x="86" y="298" fill="#6a5d50" font-family="Inter, system-ui" font-size="8">14 mi · walk · saved Mon</text>
-                <text x="86" y="314" fill="#6a5d50" font-family="Inter, system-ui" font-size="8">★ ★ ★ ★ ☆</text>
-              </g>
-
-              <!-- Tab bar -->
-              <rect x="18" y="408" width="204" height="44" rx="14" fill="#fff" stroke="#e8dfd1"/>
-              <circle cx="50" cy="430" r="4" fill="#0f5a36"/>
-              <text x="60" y="434" fill="#0f5a36" font-family="Inter, system-ui" font-size="9" font-weight="600">Saved</text>
-              <text x="120" y="434" text-anchor="middle" fill="#6a5d50" font-family="Inter, system-ui" font-size="9">Plan</text>
-              <text x="190" y="434" text-anchor="middle" fill="#6a5d50" font-family="Inter, system-ui" font-size="9">Drive</text>
-            </svg>
-            <figcaption>Your library — every yander, ready for next Sunday.</figcaption>
-          </figure>
-
-        </div>
-      </section>
-
-      <!-- ============ TRUST STRIP ============ -->
-      <section class="trust" aria-labelledby="trust-h">
-        <header class="section__head section__head--center">
-          <p class="eyebrow eyebrow--quiet">Mapping you can trust</p>
-          <h2 id="trust-h" class="section__title">The good data. Properly licensed.</h2>
-          <p class="section__lede">
-            Yander is built on the same foundations the AA and OS App lean on. Open
-            data for the world; Ordnance Survey detail for Britain; routing engines
-            we host ourselves so your journey isn't telemetry for somebody else.
-          </p>
-        </header>
-
-        <ul class="trust-grid">
-          <li>
-            <h4>OpenStreetMap</h4>
-            <p>Worldwide base map — millions of contributors, openly licensed under ODbL.</p>
-          </li>
-          <li>
-            <h4>Ordnance Survey</h4>
-            <p>OS Data Hub for Britain — bridleways, byways, Crown-copyright detail no consumer map matches.</p>
-          </li>
-          <li>
-            <h4>OSRM &amp; Valhalla</h4>
-            <p>Self-hosted routing engines — your route is calculated on infrastructure we run, not sold on as data.</p>
-          </li>
-          <li>
-            <h4>Wikimedia</h4>
-            <p>Wikipedia and Commons for places, photos and stories you actually want to read on the road.</p>
-          </li>
-        </ul>
-        <p class="trust-foot"><a href="/attribution">Full attribution & licensing →</a></p>
-      </section>
-
-      <!-- ============ PRICING ============ -->
-      <section class="pricing" id="pricing" aria-labelledby="pricing-h">
-        <header class="section__head section__head--center">
-          <p class="eyebrow eyebrow--quiet">Pricing, honestly</p>
-          <h2 id="pricing-h" class="section__title">One plan. One price.<br/>No tiers, no upsells, no nonsense.</h2>
-          <p class="section__lede">
-            Yander Free is a generous 50-mile sandbox forever. When you're ready for the
-            whole country, Yander Premium unlocks every mile, every mode, every map layer
-            we've built. Pricing locks for the life of your subscription.
-          </p>
-        </header>
-
-        <div class="plans">
-          <article class="plan plan--free">
-            <header>
-              <p class="plan__tag">Free, forever</p>
-              <h3 class="plan__name">Yander Free</h3>
-              <p class="plan__price"><span class="plan__amount">£0</span><span class="plan__per">/ no card</span></p>
-            </header>
-            <ul class="plan__list">
-              <li>50-mile planning sandbox</li>
-              <li>Scenic routing — drive, cycle, walk</li>
-              <li>Up to 3 saved yanders</li>
-              <li>OpenStreetMap base layer</li>
-              <li>Drive mode preview (10 mins/day)</li>
-            </ul>
-            <a class="plan__cta plan__cta--ghost" href="#join">Get on the waitlist</a>
-          </article>
-
-          <article class="plan plan--premium" aria-label="Most popular">
-            <div class="plan__ribbon">For the long road</div>
-            <header>
-              <p class="plan__tag">Everything, unlocked</p>
-              <h3 class="plan__name">Yander Premium</h3>
-              <p class="plan__price">
-                <span class="plan__amount">£2.99</span><span class="plan__per">/ month</span>
-              </p>
-              <p class="plan__or">or <strong>£24.99 / year</strong> · save 30%</p>
-            </header>
-            <ul class="plan__list">
-              <li><strong>Unlimited range</strong> — plan anywhere in Britain</li>
-              <li><strong>OS Data Hub layers</strong> — bridleways, byways, contours</li>
-              <li>Full drive mode with turn-by-turn voice</li>
-              <li>Unlimited saved yanders</li>
-              <li>GPX import / export</li>
-              <li>Offline tiles for the trip</li>
-              <li>Founder pricing locked for life</li>
-            </ul>
-            <a class="plan__cta plan__cta--solid" href="#join">Join early — founder price</a>
-            <p class="plan__fine">7-day trial · cancel any time · UK consumer cooling-off applies</p>
-          </article>
-        </div>
-
-        <p class="pricing-foot">
-          No family plan. No student plan. No discount codes. One honest price, one
-          decision. That keeps Yander independent and the lights on the lanes.
-        </p>
-      </section>
-
-      <!-- ============ FOUNDER NOTE ============ -->
-      <section class="founder" aria-label="A note from the founder">
-        <blockquote class="founder__quote">
-          <p>
-            I built Yander because I was bored of being routed onto the M40. The good
-            stuff in Britain is on the lanes — the pubs, the views, the villages with
-            two letters in the name. Yander is for people who'd rather arrive an hour
-            late with a story than on time with none.
-          </p>
-          <footer class="founder__cite">
-            <strong>Sean Leishman</strong>
-            <span>Founder · Yander</span>
-          </footer>
-        </blockquote>
-      </section>
-
-      <!-- ============ CTA ============ -->
-      <section class="cta" id="join" aria-labelledby="cta-h">
-        <h2 id="cta-h" class="cta__title">Get in early.<br/><em>Stay in the cheap seats.</em></h2>
-        <p class="cta__body">
-          Join the waitlist. We'll send a quiet postcard when there's something
-          worth your morning — beta invites, founder pricing, and the launch date.
-          No spam, no growth-hacker noise, no five-emails-a-week.
-        </p>
-        <form class="signup signup--big" id="signup-form-2" action="/subscribe" method="post" novalidate>
-          <div class="signup__row">
-            <input
-              id="email-2"
-              name="email"
-              type="email"
-              required
-              autocomplete="email"
-              placeholder="you@somewhere.co.uk"
-              aria-label="Email address"
-            />
-            <button type="submit" class="signup__btn">
-              <span class="signup__btn-label">Reserve my spot</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
-            </button>
-          </div>
-          <p class="signup__hint" id="signup-hint-2" role="status" aria-live="polite">UK residents · GDPR-compliant · single confirmation email · unsubscribe in one click.</p>
-          <input type="hidden" name="source" value="homepage-cta" />
-        </form>
-
-        <ul class="cta-badges" aria-label="Built in Britain">
-          <li><span class="cta-badges__k">Built in</span><span class="cta-badges__v">Britain</span></li>
-          <li><span class="cta-badges__k">Hosted in</span><span class="cta-badges__v">London</span></li>
-          <li><span class="cta-badges__k">Launching</span><span class="cta-badges__v">2026</span></li>
-        </ul>
-      </section>
-
-      <!-- ============ FOOTER ============ -->
       <footer class="foot">
         <div class="foot__left">
         <nav class="social" aria-label="Yander on social">
@@ -543,61 +207,5 @@
         <p class="foot__right">Find time to yander.</p>
       </footer>
     </main>
-
-    <script>
-      (function () {
-        function wire(formId, hintId, btnSelector, source) {
-          var form = document.getElementById(formId);
-          if (!form) return;
-          var hint = document.getElementById(hintId);
-          var btn = form.querySelector(btnSelector || "button[type=submit]");
-          var btnLabel = btn ? btn.querySelector(".signup__btn-label") : null;
-          var input = form.querySelector("input[type=email]");
-          var originalHint = hint ? hint.textContent : "";
-
-          form.addEventListener("submit", function (ev) {
-            ev.preventDefault();
-            var email = (input.value || "").trim();
-            if (!email || email.indexOf("@") === -1) {
-              hint.textContent = "Please enter a valid email address.";
-              hint.classList.add("signup__hint--err");
-              input.focus();
-              return;
-            }
-            hint.classList.remove("signup__hint--err");
-            hint.textContent = originalHint;
-            btn.disabled = true;
-            if (btnLabel) btnLabel.textContent = "Sending…";
-
-            fetch("/subscribe", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ email: email, source: source }),
-            })
-              .then(function (r) { return r.json().catch(function () { return { ok: r.ok }; }); })
-              .then(function (data) {
-                if (data && data.ok) {
-                  form.classList.add("signup--sent");
-                  hint.textContent = "You're on the list. We'll send a postcard when we're live.";
-                  if (btnLabel) btnLabel.textContent = "On the list";
-                } else {
-                  btn.disabled = false;
-                  if (btnLabel) btnLabel.textContent = source === "homepage-cta" ? "Reserve my spot" : "Keep me posted";
-                  hint.textContent = (data && data.error) || "Something went wrong. Try again?";
-                  hint.classList.add("signup__hint--err");
-                }
-              })
-              .catch(function () {
-                btn.disabled = false;
-                if (btnLabel) btnLabel.textContent = source === "homepage-cta" ? "Reserve my spot" : "Keep me posted";
-                hint.textContent = "Couldn't reach the server. Please try again.";
-                hint.classList.add("signup__hint--err");
-              });
-          });
-        }
-        wire("signup-form", "signup-hint", "#signup-submit", "holding-page");
-        wire("signup-form-2", "signup-hint-2", null, "homepage-cta");
-      })();
-    </script>
   </body>
 </html>
