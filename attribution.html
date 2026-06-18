@@ -246,6 +246,21 @@
 
 </div>
 
+  <!-- Sentry error monitoring -->
+  <script src="https://js.sentry-cdn.com/188f1d1484dcd461d19dea6576488ead.min.js" crossorigin="anonymous"></script>
+  <script>
+    Sentry.onLoad(function() {
+      Sentry.init({
+        dsn: "https://188f1d1484dcd461d19dea6576488ead@o4511588979310592.ingest.de.sentry.io/4511589018566736",
+        environment: "production",
+        release: "yander-holding",
+        tracesSampleRate: 0.1,
+        replaysSessionSampleRate: 0,
+        replaysOnErrorSampleRate: 0
+      });
+    });
+  </script>
+  <!-- End Sentry -->
   <!-- Cloudflare Web Analytics -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "6b4f532af244424e842f4cba1ee173ea"}'></script>
   <!-- End Cloudflare Web Analytics -->
