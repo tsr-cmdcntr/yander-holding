@@ -372,6 +372,32 @@ svg {
   color: var(--amber-warm);
 }
 
+/* ------- Paused waiting list message ------- */
+.signup--paused {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 18px 22px;
+  background: rgba(247, 243, 236, 0.07);
+  border: 1px solid rgba(247, 243, 236, 0.18);
+  border-radius: 12px;
+}
+.signup--paused.signup--big {
+  padding: 22px 26px;
+  justify-content: center;
+  text-align: center;
+}
+.signup__paused-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--paper);
+  line-height: 1.45;
+}
+.signup--big .signup__paused-title {
+  font-size: 1.125rem;
+}
+
 /* ------- Footer (mirrors deck cover footer bar) ------- */
 .foot {
   display: grid;

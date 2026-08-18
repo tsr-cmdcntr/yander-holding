@@ -152,28 +152,9 @@
           </li>
         </ul>
 
-        <form class="signup" id="signup-form" action="/subscribe" method="post" novalidate>
-          <label class="signup__label" for="email">
-            Be first to know when we launch
-          </label>
-          <div class="signup__row">
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autocomplete="email"
-              placeholder="you@somewhere.co.uk"
-              aria-label="Email address"
-            />
-            <button type="submit" id="signup-submit">
-              <span class="signup__btn-label">Keep me posted</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
-            </button>
-          </div>
-          <p class="signup__hint" id="signup-hint" role="status" aria-live="polite">No spam. The occasional postcard from the road.</p>
-          <input type="hidden" name="source" value="holding-page" />
-        </form>
+        <div class="signup signup--paused" role="status" aria-live="polite">
+          <p class="signup__paused-title">Don't worry, our waiting list will be back soon.</p>
+        </div>
       </section>
       </section> <!-- /.cover -->
 
@@ -571,25 +552,9 @@
           pricing locks in for everyone on the list. No spam, no growth-hacker
           noise, no five-emails-a-week.
         </p>
-        <form class="signup signup--big" id="signup-form-2" action="/subscribe" method="post" novalidate>
-          <div class="signup__row">
-            <input
-              id="email-2"
-              name="email"
-              type="email"
-              required
-              autocomplete="email"
-              placeholder="you@somewhere.co.uk"
-              aria-label="Email address"
-            />
-            <button type="submit" class="signup__btn">
-              <span class="signup__btn-label">Add me to the list</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
-            </button>
-          </div>
-          <p class="signup__hint" id="signup-hint-2" role="status" aria-live="polite">UK · GDPR · single confirmation email · unsubscribe in one click.</p>
-          <input type="hidden" name="source" value="homepage-cta" />
-        </form>
+        <div class="signup signup--big signup--paused" role="status" aria-live="polite">
+          <p class="signup__paused-title">Don't worry, our waiting list will be back soon.</p>
+        </div>
 
         <ul class="cta-badges" aria-label="Built in Britain">
           <li><span class="cta-badges__k">Built in</span><span class="cta-badges__v">Britain</span></li>
