@@ -78,7 +78,7 @@
       <h1>The shoulders <em>we stand on.</em></h1>
       <p class="lede">Yander is built on the work of many open communities. This page lists every external data source, the licence under which we use it, and the credits we display.</p>
       <div class="legal-meta">
-        <span>Last updated 15 June 2026</span>
+        <span>Last updated 24 November 2026</span>
         <span>Open data &amp; open source</span>
       </div>
     </section>
@@ -92,8 +92,8 @@
         <h2>On this page</h2>
         <ol>
           <li><a href="#osm">OpenStreetMap</a></li>
+          <li><a href="#ors">openrouteservice</a></li>
           <li><a href="#osrm">OSRM</a></li>
-          <li><a href="#valhalla">Valhalla</a></li>
           <li><a href="#os">Ordnance Survey (OS Data Hub)</a></li>
           <li><a href="#wiki">Wikipedia &amp; Wikimedia Commons</a></li>
           <li><a href="#strings">Attribution strings used in the app</a></li>
@@ -107,7 +107,7 @@
       <h3>What we use it for</h3>
       <p>OpenStreetMap is the primary source of the road, path, water and place data behind every Yander route. We use OpenStreetMap data for:</p>
       <ul>
-        <li>the underlying road and footpath graph that our routing engines (OSRM and Valhalla) operate on;</li>
+        <li>the underlying road and footpath graph that our routing services (openrouteservice and OSRM) operate on;</li>
         <li>searching, displaying and describing places (points of interest, parks, rivers, lakes, towns);</li>
         <li>map tiles outside of Great Britain, served by community and commercial OSM tile providers;</li>
         <li>enriching saved routes with names, surface, tracktype and other tags.</li>
@@ -127,23 +127,22 @@
         <li>Where we display OSM data alongside non-OSM data (for example, OS feature density), we make clear which source each element comes from.</li>
       </ul>
 
-      <h2 id="osrm">2. OSRM (Open Source Routing Machine)</h2>
+      <h2 id="ors">2. openrouteservice (HeiGIT)</h2>
       <h3>What we use it for</h3>
-      <p>OSRM is the primary routing engine for driving, walking and cycling routes inside Yander. We run the public OSRM demo endpoints and self-hosted OSRM instances against the OpenStreetMap graph.</p>
+      <p>openrouteservice, run by <a href="https://heigit.org/" rel="noopener">HeiGIT</a> at Heidelberg University, calculates Yander's walking and cycling routes on real footpath and cycle networks from OpenStreetMap. Our server sends it the start, end and any stops of the route you asked for. It does not receive your name, account or IP address.</p>
       <h3>Licence</h3>
-      <p><strong>OSRM:</strong> BSD 2-Clause Licence. Full text: <a href="https://github.com/Project-OSRM/osrm-backend/blob/master/LICENSE.TXT" rel="noopener">github.com/Project-OSRM/osrm-backend</a>.</p>
-      <h3>Attribution</h3>
-      <p>The BSD 2-Clause Licence requires us to retain the OSRM copyright notice in any redistribution of the OSRM source code, but does not require user-facing attribution. We nevertheless credit OSRM here and in our Terms of Service because we believe attribution is good practice when a project does this much heavy lifting for us.</p>
-      <div class="callout"><p><strong>Routing by OSRM</strong> (<a href="https://project-osrm.org" rel="noopener">project-osrm.org</a>)</p></div>
+      <p>openrouteservice results are licensed under Creative Commons BY-SA 4.0, under the <a href="https://openrouteservice.org/terms-of-service/" rel="noopener">openrouteservice Terms of Service</a>. The underlying data is OpenStreetMap (ODbL).</p>
+      <h3>Required attribution</h3>
+      <div class="callout"><p><strong>© openrouteservice by HeiGIT | Data from OpenStreetMap</strong></p></div>
 
-      <h2 id="valhalla">3. Valhalla</h2>
+      <h2 id="osrm">3. OSRM (Open Source Routing Machine)</h2>
       <h3>What we use it for</h3>
-      <p>Valhalla is our secondary routing engine. We use Valhalla as a fallback when OSRM is unavailable or times out, and for multi-stop routing, isochrones and certain scenic-cost optimisations that we have authored on top of Valhalla's customisable costing.</p>
+      <p>OSRM calculates Yander's driving routes, and backs up walking and cycling routes if openrouteservice is unavailable. We use public OSRM servers sponsored and operated by <a href="https://www.fossgis.de/" rel="noopener">FOSSGIS e.V.</a> (<a href="https://github.com/Project-OSRM/osrm-backend/wiki/Demo-server" rel="noopener">router.project-osrm.org</a> and <a href="https://routing.openstreetmap.de/about.html" rel="noopener">routing.openstreetmap.de</a>). As with openrouteservice, our server sends only the route points, not your identity or IP address.</p>
       <h3>Licence</h3>
-      <p><strong>Valhalla:</strong> MIT Licence. Full text: <a href="https://github.com/valhalla/valhalla/blob/master/COPYING" rel="noopener">github.com/valhalla/valhalla</a>.</p>
+      <p><strong>OSRM:</strong> BSD 2-Clause Licence. Full text: <a href="https://github.com/Project-OSRM/osrm-backend/blob/master/LICENSE.TXT" rel="noopener">github.com/Project-OSRM/osrm-backend</a>. Routes are calculated on OpenStreetMap data (ODbL).</p>
       <h3>Attribution</h3>
-      <p>The MIT Licence requires us to retain the copyright notice in any redistribution of the source code, but does not require user-facing attribution. We nevertheless credit Valhalla here and in our Terms of Service.</p>
-      <div class="callout"><p><strong>Routing by Valhalla</strong> (<a href="https://valhalla.github.io/valhalla/" rel="noopener">valhalla.github.io</a>)</p></div>
+      <p>We credit OSRM and OpenStreetMap wherever routes are shown, and link to OpenStreetMap so anyone can fix the map.</p>
+      <div class="callout"><p><strong>Routing by OSRM</strong> (<a href="https://project-osrm.org" rel="noopener">project-osrm.org</a>) · <strong>© OpenStreetMap contributors</strong></p></div>
 
       <h2 id="os">4. Ordnance Survey (OS Data Hub)</h2>
       <h3>What we use it for</h3>
@@ -188,17 +187,17 @@
       <p>CC BY-SA 4.0's share-alike clause means that if we adapt a Wikipedia article extract, that <strong>adapted text</strong> must also be made available under CC BY-SA 4.0 or a compatible licence. Where Yander shows AI-generated descriptions that may themselves have been informed by Wikipedia content, we treat the AI output as <strong>inspired by, but distinct from</strong>, Wikipedia text — and we never present AI-generated paragraphs as if they were the Wikipedia article. We label every direct Wikipedia extract clearly as such, with the attribution above.</p>
 
       <h2 id="strings">6. Attribution strings used in the app</h2>
-      <p>These are the canonical short strings; the app uses them verbatim wherever the underlying source is displayed.</p>
+      <p>These are the canonical short strings for each source, used verbatim wherever that source is displayed.</p>
       <div class="legal-table-wrap">
         <table class="legal-table">
           <thead><tr><th>Surface</th><th>Attribution</th></tr></thead>
           <tbody>
             <tr><td>Global map (no OS basemap)</td><td><code>© OpenStreetMap contributors</code></td></tr>
             <tr><td>Global map (OS basemap selected)</td><td><code>Contains OS data © Crown copyright and database right 2026 · © OpenStreetMap contributors</code></td></tr>
-            <tr><td>OS-informed UI label tooltip</td><td><code>OS-informed: see Attribution. Route geometry is from OpenStreetMap via OSRM / Valhalla.</code></td></tr>
+            <tr><td>OS-informed UI label tooltip</td><td><code>OS-informed: see Attribution. Route geometry is from OpenStreetMap via openrouteservice / OSRM.</code></td></tr>
             <tr><td>Wikipedia summary card</td><td><code>From the Wikipedia article "&lt;title&gt;" by Wikipedia contributors, licensed under CC BY-SA 4.0.</code></td></tr>
             <tr><td>Wikimedia Commons image caption</td><td><code>Image: &lt;file title&gt;, &lt;licence&gt; · via Wikimedia Commons</code></td></tr>
-            <tr><td>App footer</td><td><code>Map data © OpenStreetMap contributors · GB enrichment © Crown copyright (OS Data Hub) · Place data via Wikipedia (CC BY-SA 4.0) · Routing by OSRM and Valhalla</code></td></tr>
+            <tr><td>App footer</td><td><code>Map data © OpenStreetMap contributors · GB enrichment © Crown copyright (OS Data Hub) · Place data via Wikipedia (CC BY-SA 4.0) · Routing © openrouteservice by HeiGIT and OSRM</code></td></tr>
           </tbody>
         </table>
       </div>
@@ -226,7 +225,7 @@
 
       <hr/>
       <p style="color: rgba(247,243,236,0.5); font-size: 0.85rem;">
-        Last updated 17 June 2026 · Reviewed by Propingtons Ltd, registered in England and Wales (company number 11341542).
+        Last updated 24 November 2026 · Reviewed by Propingtons Ltd, registered in England and Wales (company number 11341542).
       </p>
 
     </article>
