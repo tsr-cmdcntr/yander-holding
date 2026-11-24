@@ -93,7 +93,7 @@
         <ol>
           <li><a href="#osm">OpenStreetMap</a></li>
           <li><a href="#ors">openrouteservice</a></li>
-          <li><a href="#osrm">OSRM</a></li>
+          <li><a href="#osrm">Stadia Maps and OSRM</a></li>
           <li><a href="#os">Ordnance Survey (OS Data Hub)</a></li>
           <li><a href="#wiki">Wikipedia &amp; Wikimedia Commons</a></li>
           <li><a href="#strings">Attribution strings used in the app</a></li>
@@ -107,7 +107,7 @@
       <h3>What we use it for</h3>
       <p>OpenStreetMap is the primary source of the road, path, water and place data behind every Yander route. We use OpenStreetMap data for:</p>
       <ul>
-        <li>the underlying road and footpath graph that our routing services (openrouteservice and OSRM) operate on;</li>
+        <li>the underlying road and footpath graph that our routing services (openrouteservice, Stadia Maps and OSRM) operate on;</li>
         <li>searching, displaying and describing places (points of interest, parks, rivers, lakes, towns);</li>
         <li>map tiles outside of Great Britain, served by community and commercial OSM tile providers;</li>
         <li>enriching saved routes with names, surface, tracktype and other tags.</li>
@@ -135,14 +135,15 @@
       <h3>Required attribution</h3>
       <div class="callout"><p><strong>© openrouteservice by HeiGIT | Data from OpenStreetMap</strong></p></div>
 
-      <h2 id="osrm">3. OSRM (Open Source Routing Machine)</h2>
-      <h3>What we use it for</h3>
-      <p>OSRM calculates Yander's driving routes, and backs up walking and cycling routes if openrouteservice is unavailable. We use public OSRM servers sponsored and operated by <a href="https://www.fossgis.de/" rel="noopener">FOSSGIS e.V.</a> (<a href="https://github.com/Project-OSRM/osrm-backend/wiki/Demo-server" rel="noopener">router.project-osrm.org</a> and <a href="https://routing.openstreetmap.de/about.html" rel="noopener">routing.openstreetmap.de</a>). As with openrouteservice, our server sends only the route points, not your identity or IP address.</p>
+      <h2 id="osrm">3. Stadia Maps (driving) and OSRM (backup)</h2>
+      <h3>What we use them for</h3>
+      <p><a href="https://stadiamaps.com/" rel="noopener">Stadia Maps</a>, based in the United States, calculates Yander's driving routes using Valhalla, an open-source routing engine, on OpenStreetMap data. Our server sends it the start, end and any stops for the route. It never receives your name, account or IP address. If Stadia Maps is unavailable, driving routes come from openrouteservice (Section 2) instead.</p>
+      <p>When openrouteservice is unavailable, walking and cycling routes fall back to the public OSRM (Open Source Routing Machine) servers at <a href="https://routing.openstreetmap.de/about.html" rel="noopener">routing.openstreetmap.de</a>, run by <a href="https://www.fossgis.de/" rel="noopener">FOSSGIS e.V.</a>. As with the other routing services, our server sends only the route points, not your identity or IP address.</p>
       <h3>Licence</h3>
-      <p><strong>OSRM:</strong> BSD 2-Clause Licence. Full text: <a href="https://github.com/Project-OSRM/osrm-backend/blob/master/LICENSE.TXT" rel="noopener">github.com/Project-OSRM/osrm-backend</a>. Routes are calculated on OpenStreetMap data (ODbL).</p>
+      <p><strong>Stadia Maps:</strong> used under the <a href="https://stadiamaps.com/terms-of-service/" rel="noopener">Stadia Maps Terms of Service</a>. <strong>Valhalla:</strong> MIT Licence (<a href="https://github.com/valhalla/valhalla" rel="noopener">github.com/valhalla/valhalla</a>). <strong>OSRM:</strong> BSD 2-Clause Licence (<a href="https://github.com/Project-OSRM/osrm-backend/blob/master/LICENSE.TXT" rel="noopener">github.com/Project-OSRM/osrm-backend</a>). All routes are calculated on OpenStreetMap data (ODbL).</p>
       <h3>Attribution</h3>
-      <p>We credit OSRM and OpenStreetMap wherever routes are shown, and link to OpenStreetMap so anyone can fix the map.</p>
-      <div class="callout"><p><strong>Routing by OSRM</strong> (<a href="https://project-osrm.org" rel="noopener">project-osrm.org</a>) · <strong>© OpenStreetMap contributors</strong></p></div>
+      <p>We credit Stadia Maps on the map whenever a driving route is shown, link to <a href="https://stadiamaps.com/attribution/" rel="noopener">Stadia Maps' attribution page</a>, and credit OpenStreetMap so anyone can fix the map.</p>
+      <div class="callout"><p><strong>Driving routes © <a href="https://stadiamaps.com/" rel="noopener">Stadia Maps</a></strong> · <strong>© OpenStreetMap contributors</strong></p></div>
 
       <h2 id="os">4. Ordnance Survey (OS Data Hub)</h2>
       <h3>What we use it for</h3>
@@ -194,10 +195,10 @@
           <tbody>
             <tr><td>Global map (no OS basemap)</td><td><code>© OpenStreetMap contributors</code></td></tr>
             <tr><td>Global map (OS basemap selected)</td><td><code>Contains OS data © Crown copyright and database right 2026 · © OpenStreetMap contributors</code></td></tr>
-            <tr><td>OS-informed UI label tooltip</td><td><code>OS-informed: see Attribution. Route geometry is from OpenStreetMap via openrouteservice / OSRM.</code></td></tr>
+            <tr><td>OS-informed UI label tooltip</td><td><code>OS-informed: see Attribution. Route geometry is from OpenStreetMap via openrouteservice, Stadia Maps or OSRM.</code></td></tr>
             <tr><td>Wikipedia summary card</td><td><code>From the Wikipedia article "&lt;title&gt;" by Wikipedia contributors, licensed under CC BY-SA 4.0.</code></td></tr>
             <tr><td>Wikimedia Commons image caption</td><td><code>Image: &lt;file title&gt;, &lt;licence&gt; · via Wikimedia Commons</code></td></tr>
-            <tr><td>App footer</td><td><code>Map data © OpenStreetMap contributors · GB enrichment © Crown copyright (OS Data Hub) · Place data via Wikipedia (CC BY-SA 4.0) · Routing © openrouteservice by HeiGIT and OSRM</code></td></tr>
+            <tr><td>App footer</td><td><code>Map data © OpenStreetMap contributors · GB enrichment © Crown copyright (OS Data Hub) · Place data via Wikipedia (CC BY-SA 4.0) · Routing © openrouteservice by HeiGIT · Driving routes © Stadia Maps</code></td></tr>
           </tbody>
         </table>
       </div>
