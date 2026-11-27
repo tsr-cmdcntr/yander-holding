@@ -98,7 +98,7 @@
           <li><a href="#third-parties">Third-party services</a></li>
           <li><a href="#transfers">International transfers</a></li>
           <li><a href="#rights">Your rights</a></li>
-          <li><a href="#cookies">Cookies</a></li>
+          <li><a href="#cookies">Cookies and on-device storage</a></li>
           <li><a href="#retention">Data retention</a></li>
           <li><a href="#security">Data security</a></li>
           <li><a href="#children">Children</a></li>
@@ -148,12 +148,12 @@
 
       <h3>2.5 Usage and diagnostic data</h3>
       <ul>
-        <li>Anonymous aggregate analytics (page views, feature usage) when you have consented via the cookie banner.</li>
+        <li>We don't use analytics, advertising or tracking cookies in the app. On this website, Cloudflare Web Analytics counts visits without cookies or any identifier stored on your device.</li>
         <li>Server-side logs containing your IP address, request path, response status and timestamp — kept for up to 30 days for security and abuse-prevention purposes, then automatically deleted or anonymised.</li>
       </ul>
 
       <h3>2.6 Cookies and similar technologies</h3>
-      <p>See <a href="#cookies">Section 7</a> for the full cookie inventory.</p>
+      <p>See <a href="#cookies">Section 7</a> for every cookie and item of on-device storage we use.</p>
 
       <h2 id="how">3. How we use your data and the lawful basis</h2>
       <div class="legal-table-wrap">
@@ -163,7 +163,7 @@
             <tr><td>Create and maintain your account</td><td>Account information, authentication data</td><td>Contract (Art. 6(1)(b))</td></tr>
             <tr><td>Provide route planning and navigation</td><td>Saved content, device location (in-use only)</td><td>Contract (Art. 6(1)(b))</td></tr>
             <tr><td>Send password-reset and essential service emails</td><td>Email address</td><td>Contract (Art. 6(1)(b))</td></tr>
-            <tr><td>Operate, secure and improve the service</td><td>Server logs, anonymous analytics</td><td>Legitimate interests (Art. 6(1)(f))</td></tr>
+            <tr><td>Operate, secure and improve the service</td><td>Server logs, website visit counts (no cookies)</td><td>Legitimate interests (Art. 6(1)(f))</td></tr>
             <tr><td>Detect, prevent and investigate abuse</td><td>Server logs</td><td>Legitimate interests (Art. 6(1)(f))</td></tr>
             <tr><td>Marketing emails (waitlist updates, launch announcements)</td><td>Email address</td><td>Consent (Art. 6(1)(a)) — withdrawable at any time</td></tr>
             <tr><td>Comply with legal obligations</td><td>As required by law</td><td>Legal obligation (Art. 6(1)(c))</td></tr>
@@ -230,19 +230,39 @@
       </ul>
       <p>To exercise any of these rights, email <a href="mailto:privacy@yander.app">privacy@yander.app</a>. We will respond within one month, free of charge. If you are not satisfied with our response, you have the right to lodge a complaint with the <a href="https://ico.org.uk" rel="noopener">UK Information Commissioner's Office</a> or your local EEA supervisory authority.</p>
 
-      <h2 id="cookies">7. Cookies</h2>
+      <h2 id="cookies">7. Cookies and on-device storage</h2>
+      <p>We only use cookies and on-device storage to keep you signed in, keep the service secure and remember the settings you choose. We don't use analytics, advertising or tracking cookies, and nothing here is used to follow you across other websites.</p>
+
+      <h3>7.1 On this website, yander.app</h3>
+      <p>This website doesn't set any cookies or store anything on your device itself. Cloudflare Web Analytics, Sentry error tracking and Google Fonts, which this website uses, set no cookies. Cloudflare, which protects this website, may set these cookies:</p>
       <div class="legal-table-wrap">
         <table class="legal-table">
-          <thead><tr><th>Cookie</th><th>Purpose</th><th>Type</th><th>Duration</th></tr></thead>
+          <thead><tr><th>Name</th><th>What it does</th><th>How long</th></tr></thead>
           <tbody>
-            <tr><td><code>yander_session</code></td><td>Keeps you logged in</td><td>Strictly necessary (no consent required)</td><td>Session / 30 days if "remember me" is checked</td></tr>
-            <tr><td><code>yander_csrf</code></td><td>Protects forms against cross-site request forgery</td><td>Strictly necessary</td><td>Session</td></tr>
-            <tr><td><code>yander_analytics_consent</code></td><td>Records your analytics consent decision</td><td>Strictly necessary</td><td>12 months</td></tr>
-            <tr><td><code>yander_analytics</code> (only set when consent given)</td><td>Anonymous usage analytics</td><td>Optional, with consent</td><td>12 months</td></tr>
+            <tr><td><code>cf_clearance</code><br/>Cloudflare</td><td>Only set if Cloudflare shows you a security check. It records that you passed, so you aren't asked again</td><td>Up to 1 year</td></tr>
+            <tr><td><code>__cf_bm</code><br/>Cloudflare</td><td>Helps Cloudflare tell people from automated traffic</td><td>30 minutes</td></tr>
           </tbody>
         </table>
       </div>
-      <p>Strictly-necessary cookies are loaded by default because the service cannot function without them. Optional cookies are only set after you click "Accept" on the cookie banner; you can change your mind at any time via the <strong>Cookie settings</strong> link in the footer.</p>
+      <p>Cloudflare lists these in its <a href="https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/" rel="noopener">cookie documentation</a>.</p>
+
+      <h3>7.2 In the Yander app</h3>
+      <div class="legal-table-wrap">
+        <table class="legal-table">
+          <thead><tr><th>Name</th><th>What it does</th><th>How long</th></tr></thead>
+          <tbody>
+            <tr><td><code>connect.sid</code><br/>Cookie</td><td>Keeps you signed in. Set when you sign up or sign in. Scripts can't read it (HttpOnly) and it's only sent over HTTPS</td><td>30 days, or until you sign out</td></tr>
+            <tr><td><code>sr_auth_token</code><br/>Local storage</td><td>Your sign-in token, so you stay signed in between visits</td><td>Until you sign out (expires after 30 days)</td></tr>
+            <tr><td>Your settings, e.g. <code>scenic_units</code>, <code>nav_voice</code><br/>Local storage</td><td>Remembers your choices, such as miles or km, map style, voice, alerts and stop types, and whether you've seen the welcome screens and notices. Stays on your device; not sent to us</td><td>Until you clear your browser data</td></tr>
+            <tr><td><code>scenic_journey</code><br/>Session storage</td><td>Keeps the route you're viewing if the page reloads</td><td>Until you close the tab</td></tr>
+            <tr><td><code>yander-v1</code><br/>Offline cache</td><td>A copy of the app's own files (not your data), so it opens quickly and works offline</td><td>Until the app updates or you clear your browser data</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>When you sign up, sign in or reset your password in the app, Cloudflare's Turnstile security check runs in a small frame from Cloudflare and may use its own cookies or storage to tell people from bots. See Cloudflare's <a href="https://www.cloudflare.com/turnstile-privacy-policy/" rel="noopener">Turnstile Privacy Addendum</a>. If you choose Sign in with Google, Google sets its own cookies on its own website under <a href="https://policies.google.com/technologies/cookies" rel="noopener">Google's cookie policy</a>.</p>
+
+      <h3>7.3 Your choices</h3>
+      <p>Everything above is needed to provide the service you ask for or to remember your own choices, so there is nothing to opt in to. If we ever add optional cookies, such as analytics, we will ask for your consent first and update this section. You can delete cookies and site data at any time in your browser settings; you will then need to sign in again and set your preferences again. Signing out removes your sign-in token and ends your session.</p>
 
       <h2 id="retention">8. Data retention</h2>
       <div class="legal-table-wrap">
@@ -252,7 +272,6 @@
             <tr><td>Account record (email, display name)</td><td>Until you delete your account</td></tr>
             <tr><td>Saved routes and plans</td><td>Until you delete them, or 90 days after account deletion</td></tr>
             <tr><td>Server logs (IP, request metadata)</td><td>30 days</td></tr>
-            <tr><td>Anonymous analytics aggregates</td><td>Indefinite (no identifying data)</td></tr>
             <tr><td>Email-marketing list</td><td>Until you unsubscribe</td></tr>
             <tr><td>Backups</td><td>Rolling 30-day backup window; data in a backup is treated as deleted once it ages out of the window</td></tr>
           </tbody>
@@ -264,7 +283,7 @@
       <ul>
         <li>All traffic to Yander is encrypted in transit using HTTPS (TLS 1.2+).</li>
         <li>Passwords are hashed with bcrypt at cost factor 10 or higher.</li>
-        <li>Session cookies are <code>HttpOnly</code>, <code>Secure</code> and <code>SameSite=Lax</code>.</li>
+        <li>Our sign-in cookie is <code>HttpOnly</code>, <code>Secure</code> and <code>SameSite=Lax</code>.</li>
         <li>Access to the application database and server logs is restricted to the application backend and the operator; access is logged.</li>
         <li>We routinely apply security updates to our dependencies and infrastructure.</li>
       </ul>
