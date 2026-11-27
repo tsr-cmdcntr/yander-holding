@@ -78,7 +78,7 @@
       <h1>What we keep, <em>and what we don't.</em></h1>
       <p class="lede">Yander helps you find scenic routes. We need a little data to make that work and let you sign in. We don't take anything we don't need, and we never sell what we do.</p>
       <div class="legal-meta">
-        <span>Last updated 26 November 2026</span>
+        <span>Last updated 27 November 2026</span>
         <span>Effective 15 June 2026</span>
         <span>UK GDPR &amp; EU GDPR</span>
       </div>
@@ -180,24 +180,28 @@
           <thead><tr><th>Service</th><th>Purpose</th><th>Personal data shared</th></tr></thead>
           <tbody>
             <tr><td><a href="https://railway.com/legal/privacy" rel="noopener">Railway</a></td><td>Application hosting and our database (accounts and saved content)</td><td>Account information and saved content, stored in our database in the EU (Amsterdam, Netherlands); server logs (IP, request metadata)</td></tr>
-            <tr><td><a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare</a></td><td>CDN, DNS and DDoS protection</td><td>IP address, request metadata</td></tr>
+            <tr><td><a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">Cloudflare</a></td><td>CDN, DNS and DDoS protection, the Turnstile security check when you sign up or sign in to the app, and visitor counts for this website (Cloudflare Web Analytics, which sets no cookies)</td><td>IP address, request metadata</td></tr>
             <tr><td><a href="https://policies.google.com/privacy" rel="noopener">Google</a> (Sign-in)</td><td>OAuth authentication if you choose Google sign-in</td><td>Email address, Google account ID</td></tr>
             <tr><td><a href="https://www.anthropic.com/legal/privacy" rel="noopener">Anthropic</a> (Claude)</td><td>AI route descriptions and trip planning</td><td>The text of your prompt, not your account identity</td></tr>
-            <tr><td><a href="https://openai.com/policies/privacy-policy" rel="noopener">OpenAI</a> (if used for an AI feature)</td><td>AI-assisted features when enabled</td><td>The text of your prompt, not your account identity</td></tr>
             <tr><td><a href="https://resend.com/legal/privacy-policy" rel="noopener">Resend</a></td><td>Transactional email delivery (password reset, waitlist)</td><td>Email address, message content</td></tr>
-            <tr><td><a href="https://osmfoundation.org/wiki/Privacy_Policy" rel="noopener">OpenStreetMap</a> tile servers</td><td>Map tiles</td><td>IP address (anonymous tile requests)</td></tr>
+            <tr><td><a href="https://openfreemap.org/privacy/" rel="noopener">OpenFreeMap</a> (Hyperknot Software Kft., Hungary, with Cloudflare as CDN)</td><td>Main map styles in the app: Road, Terrain and Dark</td><td>IP address, browser details and the map area you're viewing, sent straight from your browser. OpenFreeMap's access logs don't contain IP addresses; its error logs may, and are deleted after 7 days</td></tr>
+            <tr><td><a href="https://overpass.private.coffee/" rel="noopener">Private.coffee</a> (Austria)</td><td>Backup search for stops and places along a route when Geoapify is unavailable</td><td>Areas along a route, sent from our server. Your IP address and account are not shared</td></tr>
             <tr><td><a href="https://openrouteservice.org/terms-of-service/" rel="noopener">openrouteservice</a> (HeiGIT gGmbH, Germany)</td><td>Walking and cycling routes, and the driving backup</td><td>Route start, end and stop coordinates, sent from our server. Your IP address and account are not shared</td></tr>
             <tr><td><a href="https://www.geoapify.com/privacy-policy/" rel="noopener">Geoapify</a> (KEPTAGO LTD, Cyprus; servers in Germany and Finland)</td><td>Finding stops, places and rivers along a route</td><td>Areas along a route, sent from our server. Your IP address and account are not shared. Geoapify normally deletes request details within 24 hours</td></tr>
             <tr><td><a href="https://sentry.io/privacy/" rel="noopener">Sentry</a> (Functional Software, Inc.; data stored in the EU, Frankfurt)</td><td>Error tracking for our server and for this website</td><td>Technical details of an error, such as the page and the error message. Our server removes cookies, IP addresses and the contents of your request before sending. Errors on this website are sent from your browser, so Sentry receives your IP address, but we have set Sentry not to store it</td></tr>
             <tr><td><a href="https://stadiamaps.com/privacy-policy/" rel="noopener">Stadia Maps</a> (Stadia Maps, Inc., United States)</td><td>Driving routes</td><td>Route start, end and stop coordinates, sent from our server. Your IP address and account are not shared. Transfers to the US are covered by Standard Contractual Clauses</td></tr>
             <tr><td><a href="https://www.fossgis.de/datenschutzerklaerung/" rel="noopener">FOSSGIS e.V.</a> (OSRM routing servers, Germany)</td><td>Backup walking and cycling routes</td><td>Route start, end and stop coordinates, sent from our server. Your IP address and account are not shared</td></tr>
-            <tr><td><a href="https://osmfoundation.org/wiki/Privacy_Policy" rel="noopener">Nominatim</a> (OpenStreetMap Foundation) and <a href="https://www.komoot.com/privacy" rel="noopener">Photon</a> (komoot)</td><td>Place search</td><td>The text you search for. Most searches go through our server, so your IP address isn't shared. Searches on the Epic Drives page go straight from your browser to Photon, so komoot also sees your IP address</td></tr>
-            <tr><td><a href="https://ipapi.co/privacy/" rel="noopener">ipapi.co</a></td><td>Rough starting location for the map when you haven't shared your location</td><td>Your IP address, sent from our server to look up an approximate town or city</td></tr>
+            <tr><td><a href="https://osmfoundation.org/wiki/Privacy_Policy" rel="noopener">Nominatim</a> (OpenStreetMap Foundation, UK) and <a href="https://www.komoot.com/privacy" rel="noopener">Photon</a> (komoot, Germany)</td><td>Place search, and turning a point on the map into a place name</td><td>The text you search for, or the map point being named, which may be your current location. Most requests go through our server, so your IP address isn't shared. Searches on the Epic Drives page go straight from your browser to Photon, so komoot also sees your IP address</td></tr>
             <tr><td><a href="https://carto.com/privacy/" rel="noopener">CARTO</a> (CartoDB Inc., United States)</td><td>Map tiles: labels on the satellite map, and the Epic Drives, City Trips and Public Transport maps</td><td>IP address, browser details and the map area you're viewing, sent straight from your browser. CARTO shortens the IP address and deletes its logs after 30 days</td></tr>
             <tr><td><a href="https://www.esri.com/en-us/privacy/privacy-statements/privacy-statement" rel="noopener">Esri</a> (United States)</td><td>Satellite imagery when you choose the Satellite layer</td><td>IP address, browser details and the map area you're viewing, sent straight from your browser</td></tr>
             <tr><td><a href="https://aws.amazon.com/privacy/" rel="noopener">Amazon Web Services</a> (United States)</td><td>Terrain heights for 3D terrain and the route height chart</td><td>IP address, browser details and the map area you're viewing, sent straight from your browser</td></tr>
             <tr><td><a href="https://osdatahub.os.uk/legal/privacy" rel="noopener">Ordnance Survey</a> Data Hub</td><td>GB-only map tiles and walking-context data</td><td>Map tile requests are proxied through our server, so your IP is <strong>not</strong> shared with OS</td></tr>
-            <tr><td><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" rel="noopener">Wikipedia / Wikimedia Foundation</a></td><td>Place summaries and images</td><td>Anonymous API requests for article titles, made directly from your browser</td></tr>
+            <tr><td><a href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy" rel="noopener">Wikipedia, Wikidata and Wikimedia Commons</a> (Wikimedia Foundation)</td><td>Place summaries and photos</td><td>Place names and article titles, sent from our server. Photos are passed through our server too. Your IP address and account are not shared</td></tr>
+            <tr><td><a href="https://unsplash.com/privacy" rel="noopener">Unsplash</a></td><td>Photos of places and stops</td><td>Photo searches are sent from our server and contain place names only. Your browser loads the photos straight from Unsplash, which sees your IP address and browser details</td></tr>
+            <tr><td><a href="https://www.pexels.com/privacy-policy/" rel="noopener">Pexels</a> (Canva Germany GmbH, Germany)</td><td>Photos on the Epic Drives and Public Transport pages</td><td>Your browser loads the photos straight from Pexels, which sees your IP address and browser details</td></tr>
+            <tr><td><a href="https://privacy.ticketmaster.com/privacy-policy" rel="noopener">Ticketmaster</a> (Live Nation Entertainment, Inc., United States)</td><td>Events near you on the app's Events tab, when event listings are switched on</td><td>Your location when you open the Events tab, sent from our server. Your IP address and account are not shared. Event images load straight from Ticketmaster, which sees your IP address</td></tr>
+            <tr><td><a href="https://www.fontshare.com/" rel="noopener">Fontshare</a> (Indian Type Foundry)</td><td>The fonts used in the app</td><td>Your browser loads the fonts straight from Fontshare, which sees your IP address and browser details</td></tr>
+            <tr><td><a href="https://developers.google.com/fonts/faq/privacy" rel="noopener">Google Fonts</a> (Google)</td><td>The fonts used on this website</td><td>Your browser loads the fonts straight from Google, which sees your IP address and browser details. Google Fonts sets no cookies</td></tr>
           </tbody>
         </table>
       </div>
@@ -211,6 +215,7 @@
         <li>the EU Standard Contractual Clauses,</li>
       </ul>
       <p>as approved by the UK Information Commissioner's Office and the European Commission. You may request a copy of the safeguards in place by emailing <a href="mailto:privacy@yander.app">privacy@yander.app</a>.</p>
+      <p>Some services in Section 4 are loaded straight from your browser, such as map tiles, photos and fonts. Those providers receive your IP address and browser details under their own privacy policies, and some of them are outside the UK and EEA.</p>
 
       <h2 id="rights">6. Your rights under UK GDPR and EU GDPR</h2>
       <p>If you are located in the United Kingdom or the European Economic Area you have the following rights:</p>
@@ -280,7 +285,7 @@
 
       <hr/>
       <p style="color: rgba(247,243,236,0.5); font-size: 0.85rem;">
-        Last updated 26 November 2026 · Effective 25 November 2026 · Reviewed by Propingtons Ltd, registered in England and Wales (company number 11341542).<br/>
+        Last updated 27 November 2026 · Effective 25 November 2026 · Reviewed by Propingtons Ltd, registered in England and Wales (company number 11341542).<br/>
         Material changes will be notified by email at least 14 days before they take effect.
       </p>
 
