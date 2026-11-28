@@ -78,7 +78,7 @@
       <h1>What we keep, <em>and what we don't.</em></h1>
       <p class="lede">Yander helps you find scenic routes. We need a little data to make that work and let you sign in. We don't take anything we don't need, and we never sell what we do.</p>
       <div class="legal-meta">
-        <span>Last updated 27 November 2026</span>
+        <span>Last updated 28 November 2026</span>
         <span>Effective 15 June 2026</span>
         <span>UK GDPR &amp; EU GDPR</span>
       </div>
@@ -143,6 +143,7 @@
       <ul>
         <li>Your device's GPS coordinates, <strong>only</strong> while you are actively using a feature that needs them (live navigation, "use my location" search).</li>
         <li>We do <strong>not</strong> store your live location on our servers. It is processed in your browser and sent to our server, which passes the route points (not your identity or IP address) to the routing services in Section 4 only to compute the route you requested.</li>
+        <li><strong>Free roam:</strong> when you record a journey, your GPS track (and any pins you drop) is kept on your device while you record. It's only sent to us if you choose to save it to your account, where it's kept like any other saved route. You can discard it at any time.</li>
         <li>You can refuse the browser location prompt at any time; Yander remains usable without it.</li>
       </ul>
 
@@ -191,7 +192,7 @@
             <tr><td><a href="https://sentry.io/privacy/" rel="noopener">Sentry</a> (Functional Software, Inc.; data stored in the EU, Frankfurt)</td><td>Error tracking for our server and for this website</td><td>Technical details of an error, such as the page and the error message. Our server removes cookies, IP addresses and the contents of your request before sending. Errors on this website are sent from your browser, so Sentry receives your IP address, but we have set Sentry not to store it</td></tr>
             <tr><td><a href="https://stadiamaps.com/privacy-policy/" rel="noopener">Stadia Maps</a> (Stadia Maps, Inc., United States)</td><td>Driving routes</td><td>Route start, end and stop coordinates, sent from our server. Your IP address and account are not shared. Transfers to the US are covered by Standard Contractual Clauses</td></tr>
             <tr><td><a href="https://www.fossgis.de/datenschutzerklaerung/" rel="noopener">FOSSGIS e.V.</a> (OSRM routing servers, Germany)</td><td>Backup walking and cycling routes</td><td>Route start, end and stop coordinates, sent from our server. Your IP address and account are not shared</td></tr>
-            <tr><td><a href="https://osmfoundation.org/wiki/Privacy_Policy" rel="noopener">Nominatim</a> (OpenStreetMap Foundation, UK) and <a href="https://www.komoot.com/privacy" rel="noopener">Photon</a> (komoot, Germany)</td><td>Place search, and turning a point on the map into a place name</td><td>The text you search for, or the map point being named, which may be your current location. Most requests go through our server, so your IP address isn't shared. Searches on the Epic Drives page go straight from your browser to Photon, so komoot also sees your IP address</td></tr>
+            <tr><td><a href="https://osmfoundation.org/wiki/Privacy_Policy" rel="noopener">Nominatim</a> (OpenStreetMap Foundation, UK) and <a href="https://www.komoot.com/privacy" rel="noopener">Photon</a> (komoot, Germany)</td><td>Place search, and turning a point on the map into a place name</td><td>The text you search for, or the map point being named, which may be your current location. All requests are sent by our server, so your IP address isn't shared</td></tr>
             <tr><td><a href="https://carto.com/privacy/" rel="noopener">CARTO</a> (CartoDB Inc., United States)</td><td>Map tiles: labels on the satellite map, and the Epic Drives, City Trips and Public Transport maps</td><td>IP address, browser details and the map area you're viewing, sent straight from your browser. CARTO shortens the IP address and deletes its logs after 30 days</td></tr>
             <tr><td><a href="https://www.esri.com/en-us/privacy/privacy-statements/privacy-statement" rel="noopener">Esri</a> (United States)</td><td>Satellite imagery when you choose the Satellite layer</td><td>IP address, browser details and the map area you're viewing, sent straight from your browser</td></tr>
             <tr><td><a href="https://aws.amazon.com/privacy/" rel="noopener">Amazon Web Services</a> (United States)</td><td>Terrain heights for 3D terrain and the route height chart</td><td>IP address, browser details and the map area you're viewing, sent straight from your browser</td></tr>
@@ -255,6 +256,7 @@
             <tr><td><code>sr_auth_token</code><br/>Local storage</td><td>Your sign-in token, so you stay signed in between visits</td><td>Until you sign out (expires after 30 days)</td></tr>
             <tr><td>Your settings, e.g. <code>scenic_units</code>, <code>nav_voice</code><br/>Local storage</td><td>Remembers your choices, such as miles or km, map style, voice, alerts and stop types, and whether you've seen the welcome screens and notices. Stays on your device; not sent to us</td><td>Until you clear your browser data</td></tr>
             <tr><td><code>scenic_journey</code><br/>Session storage</td><td>Keeps the route you're viewing if the page reloads</td><td>Until you close the tab</td></tr>
+            <tr><td><code>yander_free_roam</code><br/>Local storage</td><td>The journey you're recording in Free roam (your track, pins and times), so it isn't lost if the app closes. Stays on your device; only sent to us if you tap Save</td><td>Until you save or discard the journey</td></tr>
             <tr><td><code>yander-v1</code><br/>Offline cache</td><td>A copy of the app's own files (not your data), so it opens quickly and works offline</td><td>Until the app updates or you clear your browser data</td></tr>
           </tbody>
         </table>
@@ -304,7 +306,7 @@
 
       <hr/>
       <p style="color: rgba(247,243,236,0.5); font-size: 0.85rem;">
-        Last updated 27 November 2026 · Effective 25 November 2026 · Reviewed by Propingtons Ltd, registered in England and Wales (company number 11341542).<br/>
+        Last updated 28 November 2026 · Effective 25 November 2026 · Reviewed by Propingtons Ltd, registered in England and Wales (company number 11341542).<br/>
         Material changes will be notified by email at least 14 days before they take effect.
       </p>
 
